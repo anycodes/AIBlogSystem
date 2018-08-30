@@ -37,7 +37,6 @@ resnet50_coco_best_v2.0.1.h5
 
 resnet50_weights_tf_dim_ordering_tf_kernels.h5
 
-这两个用梯子就可以的，下好了放在\tools\imageAI中就可以了
 
 
 
