@@ -50,3 +50,5 @@ resnet50_weights_tf_dim_ordering_tf_kernels.h5
 3：管理员登录可以登录/admin
 
 4：忘记说了，在配置数据库的时候，需要在BlogSystem/base.conf这个文件里面配置数据库信息，看一下就应该能看懂的
+
+使用中有问题，或者想要帮忙改blog的bug，或者想要帮我提高博客性能，重构部分恶心代码的都可以联系我，service@52exe.cn
