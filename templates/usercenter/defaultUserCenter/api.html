@@ -1,0 +1,273 @@
+{% extends 'usercenter/defaultUserCenter/base.html' %}
+
+{% block content %}
+	<div class="col-sm-6">
+		<div class="widget-box">
+			<div class="widget-header">
+				<h4 class="smaller">
+					API信息
+					<small>非常重要</small>
+				</h4>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main">
+					<p class="muted">
+						API调用地址：http://api.pmliu.cn<br>
+						SecretId：{{ secretid }}<br>
+						SecretKey：{{ secretkey }}<br>
+					</p>
+
+				</div>
+			</div>
+		</div>
+	<div class="widget-box">
+			<div class="widget-header">
+				<h4 class="smaller">
+					举例Demo
+					<small>Python</small>
+				</h4>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main">
+					<pre>'''
+    以获得文章的摘要为例
+'''
+
+import urllib.request
+import urllib.parse
+import json
+
+# 构建数据Dict
+data = {
+    "secretid":"{{ secretid }}", # 您的secretId
+    "secretKey":"{{ secretkey }}", # 您的secretKey
+    "action":"ArticleAbstract",
+    "body":json.dumps({
+        "article":"这里是一篇文章",
+        "count":1
+    })
+}
+
+# API的地址
+url = "http://api.pmliu.cn"
+
+# 对数据进行处理
+reqData = urllib.parse.urlencode(data).encode("utf-8")
+
+# 构建request对象
+req = urllib.request.Request(url=url, data=reqData)
+
+# 发起请求，获得response
+res = urllib.request.urlopen(req).read().decode("utf-8")
+
+# 对结果进行整理输出
+result = json.loads(res)
+print(result)</pre>
+
+				</div>
+			</div>
+		</div>
+	<div class="widget-box">
+			<div class="widget-header">
+				<h4 class="smaller">
+					返回结果
+				</h4>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main">
+<pre>正确的返回结果：
+{
+    "code": 0,
+    "status": "success",
+    "response": {
+        "result": 结果,
+    }
+}
+错误的返回结果：
+{
+    "code": 错误吗,
+    "status": 错误信息,
+}
+</pre>
+
+				</div>
+			</div>
+		</div>
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<h3 class="row header smaller lighter blue">
+			<span class="col-xs-6"> API中心 </span><!-- /.col -->
+		</h3>
+
+		<div id="accordion" class="accordion-style1 panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+							<i class="ace-icon fa fa-angle-down bigger-110" data-icon-hide="ace-icon fa fa-angle-down"
+							   data-icon-show="ace-icon fa fa-angle-right"></i>
+							&nbsp;文本摘要API
+						</a>
+					</h4>
+				</div>
+
+				<div class="panel-collapse collapse in" id="collapseOne">
+					<div class="panel-body">
+						<pre>入参相关：
+Action：ArticleAbstract
+Body：
+  article: 文章内容（只对中文进行提取）
+  count：获得文本长度（此处长度是指句子个数）
+
+出参相关：
+result：文本摘要的结果</pre>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+						   href="#collapseTwo">
+							<i class="ace-icon fa fa-angle-right bigger-110" data-icon-hide="ace-icon fa fa-angle-down"
+							   data-icon-show="ace-icon fa fa-angle-right"></i>
+							&nbsp;关键词提取API
+						</a>
+					</h4>
+				</div>
+
+				<div class="panel-collapse collapse" id="collapseTwo">
+					<div class="panel-body">
+												<pre>入参相关：
+Action：ArticleKeywords
+Body：
+  article: 文章内容（只对中文进行提取）
+  count：获得文本长度（此处长度是指句子个数）
+
+出参相关：
+result：关键词提取的结果</pre>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+						   href="#collapseThree">
+							<i class="ace-icon fa fa-angle-right bigger-110" data-icon-hide="ace-icon fa fa-angle-down"
+							   data-icon-show="ace-icon fa fa-angle-right"></i>
+							&nbsp;图像预测（识别）API
+						</a>
+					</h4>
+				</div>
+
+				<div class="panel-collapse collapse" id="collapseThree">
+					<div class="panel-body">
+												<pre>入参相关：
+Action：ImagePrediction
+Body：
+  image：图像的base64。
+注意，如果是base64之后的结果是字节类型，请转换为字符类型。
+例如：python base64之后结果可能是b''，此时需要进行一次decode("utf-8)
+with open("2.jpg","rb") as f:
+    base64_data = base64.b64encode(f.read()).decode("utf-8")
+
+出参相关：
+result：图像内容识别结果</pre>
+						<p><font color="red">*温馨提示：由于我的博客服务器有点弱，所以这个功能可能有点卡。请谅解。</font><br>
+						<font color="red">另外，我不介意亲，给我点赞助，换一个性能优异的服务器。哈哈！</font></p>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+						   href="#collapseForth">
+							<i class="ace-icon fa fa-angle-right bigger-110" data-icon-hide="ace-icon fa fa-angle-down"
+							   data-icon-show="ace-icon fa fa-angle-right"></i>
+							&nbsp;图像标注API
+						</a>
+					</h4>
+				</div>
+
+				<div class="panel-collapse collapse" id="collapseForth">
+					<div class="panel-body">
+												<pre>入参相关：
+Action：ObjectDetection
+Body：
+  image：图像的base64。
+注意，如果是base64之后的结果是字节类型，请转换为字符类型。
+例如：python base64之后结果可能是b''，此时需要进行一次decode("utf-8)
+with open("2.jpg","rb") as f:
+    base64_data = base64.b64encode(f.read()).decode("utf-8")
+
+出参相关：
+result：
+    image：标注的图片（base64编码）
+    content：标注内容的识别</pre>
+						<p><font color="red">*温馨提示：由于我的博客服务器有点弱，所以这个功能可能有点卡。请谅解。</font><br>
+						<font color="red">另外，我不介意亲，给我点赞助，换一个性能优异的服务器。哈哈！</font></p>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+						   href="#collapseFifth">
+							<i class="ace-icon fa fa-angle-right bigger-110" data-icon-hide="ace-icon fa fa-angle-down"
+							   data-icon-show="ace-icon fa fa-angle-right"></i>
+							&nbsp;IP地址查询API
+						</a>
+					</h4>
+				</div>
+
+				<div class="panel-collapse collapse" id="collapseFifth">
+					<div class="panel-body">
+												<pre>入参相关：
+Action：IPSearch
+Body：
+  ip：待查询的IP地址
+
+出参相关：
+result：
+    IP查询结果</pre>
+						<p><font color="red">*温馨提示：本服务来自百度搜索查询IP。</font></p>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+						   href="#collapseSixth">
+							<i class="ace-icon fa fa-angle-right bigger-110" data-icon-hide="ace-icon fa fa-angle-down"
+							   data-icon-show="ace-icon fa fa-angle-right"></i>
+							&nbsp;英汉互译API
+						</a>
+					</h4>
+				</div>
+
+				<div class="panel-collapse collapse" id="collapseSixth">
+					<div class="panel-body">
+												<pre>入参相关：
+Action：Translate
+Body：
+  content：待翻译的内容
+  type：取值1表示英->汉，取值2表示汉->英，默认1
+
+出参相关：
+result：
+    翻译结果</pre>
+						<p><font color="red">*温馨提示：本服务来自百度翻译。</font></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- /.col -->
+
+{% endblock %}

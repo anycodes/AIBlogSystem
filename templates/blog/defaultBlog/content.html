@@ -1,0 +1,356 @@
+{% load staticfiles %}
+{% load cache %}
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+	<title>{{ articleData.title }} - {{ pageInformation.webName }} - Powered by Liu Yu!</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<!--[if lte IE 8]><script src="{% static 'blog/defaultBlog/js/ie/html5shiv.js' %}"></script><![endif]-->
+	<link rel="stylesheet" href="{% static 'blog/defaultBlog/css/main.css' %}"/>
+	<link rel="icon" type="image/png" href="{% static 'currency/webFile/favicon.png' %}">
+	<meta name="keyword" content="{% for eve in articleData.tag.all %}{{ eve.name }},{% endfor %}"/>
+	<meta name="description" content="{{ articleData.desc }}"/>
+	<script type="text/javascript" src="{% static 'blog/defaultBlog/js/tagcloud.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/defaultBlog/css/jsdaima.com.css' %}">
+	<script type="text/javascript" src="{% static 'currency/tools/ueditor/third-party/SyntaxHighlighter/shCore.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'currency/tools/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css' %}"
+		  type="text/css"/>
+	<script>
+        SyntaxHighlighter.all() //执行代码高亮
+	</script>
+
+	<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'blog/defaultBlog/css/ie9.css' %}" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="{% static 'blog/defaultBlog/css/ie8.css' %}" /><![endif]-->
+	<style>
+		img {
+			max-width: 100%;
+		}
+	</style>
+	<style>
+		.img-warp {
+			width: 90%;
+			margin: 0 auto;
+		}
+
+		.img-box {
+			width: 100%;
+			height: 0px;
+			padding-bottom: 45%;
+			overflow: hidden;
+			margin: 0;
+			position: relative;
+		}
+
+		.img-first {
+			width: 100%;
+			height: 0px;
+			padding-bottom: 60%;
+			overflow: hidden;
+			margin: 0;
+			position: relative;
+		}
+
+		.img-box img {
+			width: 100%;
+		}
+
+		pre {
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			margin-top: 0px;
+			padding-top: 0px;
+		}
+
+	</style>
+	<script type="text/javascript">
+        function checkall() {
+            var name = document.getElementById("name");
+            var name_z = name.value;
+            var email = document.getElementById("email");
+            var email_z = email.value;
+            var message = document.getElementById("comment");
+            var message_z = message.value;
+            if (name_z == "" || name_z == null || email_z == "" || email_z == null || message_z == "" || message_z == null) {
+                alert("账号,邮箱和留言均不可为空");
+                return false;
+            }
+        }
+	</script>
+</head>
+<body>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+	<!-- Main -->
+	<div id="main">
+		<div class="inner">
+
+			<!-- Header -->
+			<header id="header">
+				<a href="" class="logo"><strong>名言：</strong>{{ sentence }}</a>
+			</header>
+			<!-- Content -->
+			<section>
+				<header class="main">
+					<h1>{{ articleData.title }}</h1>
+				</header>
+
+				<div class="box">
+					浏览次数：{{ articleData.click_count }}，发表日期：{{ articleData.date_publish }}，作者：{{ articleData.user.username }}
+					<br>标签：{% for tag in articleData.tag.all %}
+					{{ tag.name }}&nbsp;&nbsp;
+				{% endfor %}
+				</div>
+
+
+				{% autoescape off %}
+					{{ articleData.content }}
+				{% endautoescape %}
+
+				<hr>
+				<h3>留言列表</h3>
+				{% for foo in comm %}
+					{% if foo.0.pid_id == None %}
+						<div class="box">
+								<img src="{{ foo.1 }}" width=50px style="margin-left: -20" />&nbsp;&nbsp;用户&nbsp;<b>{{ foo.0.username }}</b>&nbsp;在<b>&nbsp;{{ foo.0.date_publish }}&nbsp;</b>说：{{ foo.0.content }}
+						</div>
+					{% else %}
+
+						<div class="box">
+								<img src="{{ foo.1 }}" width=50px style="margin-left: -20" />&nbsp;&nbsp;用户&nbsp;<b>{{ foo.0.username }}</b>&nbsp;在<b>&nbsp;{{ foo.0.date_publish }}&nbsp;</b>回复
+								{{ foo.0.pid.username }}
+
+
+								说：{{ foo.0.content }}
+								<hr>
+								<blockquote>
+									原留言是&nbsp;{{ foo.0.pid.username }}&nbsp;在&nbsp;{{ foo.0.pid.date_publish }}&nbsp;时评论的：{{ foo.0.pid.content }}</blockquote>
+
+						</div>
+
+					{% endif %}
+				{% endfor %}
+
+
+				<hr>
+
+				<h3>我要留言</h3>
+
+				<form method="post" action="" onsubmit="return checkall()">
+					<div class="row uniform">
+						<div class="6u 12u$(xsmall)">
+							<input type="text" name="name" placeholder="姓名" id="name" value="{{ userData.username }}" {% if userData.username %}readonly{% endif %}/>
+						</div>
+						<div class="6u$ 12u$(xsmall)">
+							<input type="email" name="email" placeholder="邮箱" id="email" value="{{ userData.email }}" {% if userData.username %}readonly{% endif %}/>
+						</div>
+						<!-- Break -->
+
+						<!-- Break -->
+						<div class="12u$">
+							<textarea name="comment" placeholder="留言信息" rows="6" id="comment"></textarea>
+						</div>
+						<!-- Break -->
+
+
+						<div class="12u$">
+							<ul class="actions">
+								<li><input type="submit" value="留言" class="special"/></li>
+								<li><input type="reset" value="重置"/></li>
+							</ul>
+						</div>
+					</div>
+				</form>
+
+
+			</section>
+
+		</div>
+	</div>
+
+	<!-- Sidebar -->
+	<div id="sidebar">
+		<div class="inner">
+
+			<!-- Search -->
+			<section id="search" class="alt">
+				<form method="get" action="/blog/list">
+					<input type="text" name="search" id="query" placeholder="搜索" value="{{ searchData }}"/>
+				</form>
+			</section>
+
+			<!-- Menu -->
+			<nav id="menu">
+				<header class="major">
+					<h2>分类列表</h2>
+				</header>
+				<ul>
+					<li><a href="/blog/list">全部({{ totalCount }})</a></li>
+					{% for cateDatum in categoryList %}
+						<li>
+							<a href="/blog/list?cate={{ cateDatum.cid }}">{{ cateDatum.name }}({{ cateDatum.count }})</a>
+						</li>
+					{% endfor %}
+
+				</ul>
+			</nav>
+
+
+			<!-- Menu -->
+			<nav id="menu">
+				<header class="major">
+					<h2>热门标签</h2>
+				</header>
+				<div class="box">
+					<div class="wrapper">
+						<div class="tagcloud">
+						{% cache 6000 "blogTag" %}
+							{% for eveTags in tagsData %}
+								<a href="/blog/list?tag={{ eveTags.tid }}">{{ eveTags.name }}</a>
+							{% endfor %}
+						{% endcache %}
+						</div>
+					</div><!--wrapper-->
+				</div>
+			</nav>
+
+			<!-- Section -->
+			<section>
+				<header class="major">
+					<h2>热门文章</h2>
+				</header>
+				<div class="mini-posts">
+					{% for recommend in recommendArticle %}
+						<article>
+							<a href="/blog/content?aid={{ recommend.0.aid }}" class="image">
+								<div class="img-warp">
+									<div class="img-box"><img src="{{ recommend.1 }}" alt=""/></div>
+								</div>
+							</a>
+							<p style="width: 300px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"><a href="/blog/content?aid={{ recommend.0.aid }}">
+								{{ recommend.0.title }}</a></p>
+						</article>
+					{% endfor %}
+				</div>
+
+			</section>
+        <nav id="menu">
+				<header class="major">
+					<h2>更多链接</h2>
+				</header>
+                <div class="box">
+                    <CENTER><a href="/index">网站首页</a> | <a href="/blog">博客首页</a> | <a href="/album">我的相册</a><br>
+                    <a href="/video">视频中心</a> | <a href="/project">项目中心</a> | <a href="/resume">我的简历</a></CENTER>
+                </div>
+			</nav>
+			<!-- Section -->
+			<section>
+				<header class="major">
+					<h2>博主信息</h2>
+				</header>
+				<p>在最值得做梦的年纪，如果不去做一场梦，可能会后悔一辈子。我选择了自己的梦想，也选择了为梦想而去挑战，我相信现在的困难，都是未来美好的回忆！</p>
+				<ul class="contact">
+					<li class="fa-envelope-o">{{ pageInformation.emailUser }}</li>
+					<li class="fa-home">{{ pageInformation.webHost }}</li>
+				</ul>
+			</section>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<p class="copyright">&copy; Powered By Liu Yu <br>&copy; WebSite Name: <a
+						href="/index">{{ pageInformation.webName }}</a>.</p>
+			</footer>
+
+		</div>
+	</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="{% static 'blog/defaultBlog/js/jquery.min.js' %}"></script>
+<script src="{% static 'blog/defaultBlog/js/skel.min.js' %}"></script>
+<script src="{% static 'blog/defaultBlog/js/util.js' %}"></script>
+<!--[if lte IE 8]><script src="{% static 'blog/defaultBlog/js/ie/respond.min.js' %}"></script><![endif]-->
+<script src="{% static 'blog/defaultBlog/js/main.js' %}"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a0c900918361b31d762d9cf4dc81ee5b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script type="text/javascript">
+    /*3D标签云*/
+    tagcloud({
+        selector: ".tagcloud",  //元素选择器
+        fontsize: 10,       //基本字体大小, 单位px
+        radius: 45,         //滚动半径, 单位px
+        mspeed: "normal",   //滚动最大速度, 取值: slow, normal(默认), fast
+        ispeed: "normal",   //滚动初速度, 取值: slow, normal(默认), fast
+        direction: 135,     //初始滚动方向, 取值角度(顺时针360): 0对应top, 90对应left, 135对应right-bottom(默认)...
+        keep: false          //鼠标移出组件后是否继续随鼠标滚动, 取值: false, true(默认) 对应 减速至初速度滚动, 随鼠标滚动
+    });
+</script>
+<script type="text/javascript">
+    'use strict';
+    var container = document.querySelector('.nodatadiv');
+    var content = container.innerText;
+
+    function formatContent(nodatadiv, container) {
+        var contentArray = content.split(' ');
+        var formattedContent = document.createElement('div');
+        contentArray.map(function (word) {
+            formattedContent.appendChild(createWord(word));
+        });
+        console.log(contentArray);
+
+        container.replaceChild(formattedContent, container.firstChild);
+    };
+
+    function createWord(characters) {
+        var word = document.createElement('div');
+        var wordArray = characters.split('');
+        wordArray.map(function (char) {
+            word.appendChild(formatCharacter(char));
+        });
+        word.appendChild(formatCharacter('&nbsp;'));
+        return word;
+    }
+
+    function formatCharacter(text) {
+        var text = text === ' ' ? '&nbsp;' : text;
+        var character = document.createElement('span');
+        character.innerHTML = text;
+        return character;
+    }
+
+    formatContent(content, container);
+</script>
+<script>
+    $(document).ready(function () {
+        $("#sum").click(function () {
+            var a = $("#a").val();
+            var b = $("#b").val();
+
+            $.get("/add/", {'a': a, 'b': b}, function (ret) {
+                $('#result').html(ret)
+            })
+        });
+    });
+</script>
+{% if stateData %}
+	<script>
+        alert("{{ stateData }}");
+	</script>
+{% endif %}
+</body>
+</html>

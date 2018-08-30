@@ -1,0 +1,296 @@
+{% extends 'admin/defaultAdmin/base/base_main.html' %}
+{% load staticfiles %}
+{% block headFile %}
+    {% if saveToDB.0 == "success" or saveToDB.0 == "danger" %}
+        <meta http-equiv="refresh" content="2;URL=viewCategory?{{ newUrl }}">
+    {% endif %}
+    <style>
+        .pagination {
+            margin: 20px 0;
+        }
+
+        .pagination ul {
+            display: inline-block;
+            *display: inline;
+            margin-bottom: 0;
+            margin-left: 0;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            *zoom: 1;
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .pagination ul > li {
+            display: inline;
+        }
+
+        .pagination ul > li > a,
+        .pagination ul > li > span {
+            float: left;
+            padding: 4px 12px;
+            line-height: 20px;
+            text-decoration: none;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-left-width: 0;
+        }
+
+        .pagination ul > li > a:hover,
+        .pagination ul > li > a:focus,
+        .pagination ul > .active > a,
+        .pagination ul > .active > span {
+            background-color: #f5f5f5;
+        }
+
+        .pagination ul > .active > a,
+        .pagination ul > .active > span {
+            color: #999999;
+            cursor: default;
+        }
+
+        .pagination ul > .disabled > span,
+        .pagination ul > .disabled > a,
+        .pagination ul > .disabled > a:hover,
+        .pagination ul > .disabled > a:focus {
+            color: #999999;
+            cursor: default;
+            background-color: transparent;
+        }
+
+        .pagination ul > li:first-child > a,
+        .pagination ul > li:first-child > span {
+            border-left-width: 1px;
+            -webkit-border-bottom-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            -webkit-border-top-left-radius: 4px;
+            border-top-left-radius: 4px;
+            -moz-border-radius-bottomleft: 4px;
+            -moz-border-radius-topleft: 4px;
+        }
+
+        .pagination ul > li:last-child > a,
+        .pagination ul > li:last-child > span {
+            -webkit-border-top-right-radius: 4px;
+            border-top-right-radius: 4px;
+            -webkit-border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            -moz-border-radius-topright: 4px;
+            -moz-border-radius-bottomright: 4px;
+        }
+
+        .pagination-centered {
+            text-align: center;
+        }
+
+        .pagination-right {
+            text-align: right;
+        }
+
+        .pagination-large ul > li > a,
+        .pagination-large ul > li > span {
+            padding: 11px 19px;
+            font-size: 17.5px;
+        }
+
+        .pagination-large ul > li:first-child > a,
+        .pagination-large ul > li:first-child > span {
+            -webkit-border-bottom-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            -webkit-border-top-left-radius: 6px;
+            border-top-left-radius: 6px;
+            -moz-border-radius-bottomleft: 6px;
+            -moz-border-radius-topleft: 6px;
+        }
+
+        .pagination-large ul > li:last-child > a,
+        .pagination-large ul > li:last-child > span {
+            -webkit-border-top-right-radius: 6px;
+            border-top-right-radius: 6px;
+            -webkit-border-bottom-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            -moz-border-radius-topright: 6px;
+            -moz-border-radius-bottomright: 6px;
+        }
+
+        .pagination-mini ul > li:first-child > a,
+        .pagination-small ul > li:first-child > a,
+        .pagination-mini ul > li:first-child > span,
+        .pagination-small ul > li:first-child > span {
+            -webkit-border-bottom-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            -webkit-border-top-left-radius: 3px;
+            border-top-left-radius: 3px;
+            -moz-border-radius-bottomleft: 3px;
+            -moz-border-radius-topleft: 3px;
+        }
+
+        .pagination-mini ul > li:last-child > a,
+        .pagination-small ul > li:last-child > a,
+        .pagination-mini ul > li:last-child > span,
+        .pagination-small ul > li:last-child > span {
+            -webkit-border-top-right-radius: 3px;
+            border-top-right-radius: 3px;
+            -webkit-border-bottom-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            -moz-border-radius-topright: 3px;
+            -moz-border-radius-bottomright: 3px;
+        }
+
+        .pagination-small ul > li > a,
+        .pagination-small ul > li > span {
+            padding: 2px 10px;
+            font-size: 11.9px;
+        }
+
+        .pagination-mini ul > li > a,
+        .pagination-mini ul > li > span {
+            padding: 0 6px;
+            font-size: 10.5px;
+        }
+    </style>
+{% endblock %}
+{% block sidebar %}
+    {% include 'admin/defaultAdmin/base/base_sidebar.html' %}
+{% endblock %}
+{% block navbar %}
+    {% include 'admin/defaultAdmin/base/base_navbar.html' %}
+{% endblock %}
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="content table-responsive table-full-width">
+                            <table class="table table-striped">
+                                <thead>
+                                <th>ID</th>
+                                <th><a href="?sort=title&snum={% if sortNum == "1" %}2{% else %}1{% endif %}" style="color: black">文章</a></th>
+                                <th><a href="?sort=username&snum={% if sortNum == "1" %}2{% else %}1{% endif %}" style="color: black">用户</a></th>
+                                <th><a href="?sort=time&snum={% if sortNum == "1" %}2{% else %}1{% endif %}" style="color: black">留言时间</a></th>
+                                <th>留言内容</th>
+								<th>可见</th>
+								<th>已阅</th>
+                                <th>操作</th>
+                                </thead>
+                                <tbody>
+                                {% for eveComment in commentList %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td style="width: 300px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{ eveComment.article.title }}</td>
+                                        <td>{{ eveComment.username }}</td>
+                                        <td>{{ eveComment.date_publish }}</td>
+                                        <td>{{ eveComment.content |slice:"40" }}{% if eveComment.content|length > 40 %} ... {% endif %}</td>
+										<td><a href="?iscom=change&cid={{ eveComment.cid }}">{% if eveComment.is_recommend == True %}可见{% else %}不可见{% endif %}</a></td>
+										<td><a href="?watched=change&cid={{ eveComment.cid }}">{% if eveComment.watched == True %}已阅{% else %}未阅{% endif %}</a></td>
+                                        <td><a href="commentsView?cid={{ eveComment.cid }}" style="color: black">查看</a>
+                                            <a href="{{ pageUrl }}{% if "?" in pageUrl%}&{% else %}?{% endif %}dele=true&cid={{ eveComment.cid }}" style="color: black">删除</a>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <center>
+                                <div class="pagination pagination-centered">
+                                    <ul>
+                                        {% if pageNum|add:-1 < 1 %}
+                                            <li><a href="#"><</a></li>
+                                        {% else %}
+                                            <li>
+                                                <a href="?page={{ pageNum|add:-1 }}{% if defaultString %}&{{ defaultString }}{% endif %}"><</a>
+                                            </li>
+                                        {% endif %}
+
+
+                                        {% if pageNum|add:-3 > 0 %}
+                                            <li>
+                                                <a href="?page={{ pageNum|add:-3 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:-3 }}</a>
+                                            </li>
+                                        {% endif %}
+
+                                        {% if pageNum|add:-2 > 0 %}
+                                            <li>
+                                                <a href="?page={{ pageNum|add:-2 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:-2 }}</a></li>
+                                        {% endif %}
+
+                                        {% if pageNum|add:-1 > 0 %}
+                                            <li>
+                                                <a href="?page={{ pageNum|add:-1 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:-1 }}</a></li>
+                                        {% endif %}
+
+                                        <li><a href="#" class="page active">{% if pageNum %}{{ pageNum }}{% else %}0{% endif %}</a></li>
+
+
+                                        {% if pageNum|add:1 <= categoryList.paginator.num_pages %}
+                                            <li>
+                                                <a href="?page={{ pageNum|add:1 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:1 }}</a></li>
+                                        {% endif %}
+
+                                        {% if pageNum|add:2 <= categoryList.paginator.num_pages %}
+                                            <li>
+                                                <a href="?page={{ pageNum|add:2 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:2 }}</a></li>
+                                        {% endif %}
+
+                                        {% if pageNum|add:3 <= categoryList.paginator.num_pages %}
+                                            <li>
+                                                <a href="?page={{ pageNum|add:3 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:3 }}</a></li>
+                                        {% endif %}
+
+
+
+                                        {% if pageNum|add:1 <= categoryList.paginator.num_pages %}
+                                            <li>
+                                                <a href="?page={{ pageNum|add:1 }}{% if defaultString %}&{{ defaultString }}{% endif %}">></a>
+                                            </li>
+                                        {% else %}
+                                            <li><a href="#">></a></li>
+                                        {% endif %}
+
+                                    </ul>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+    {% include 'admin/defaultAdmin/base/base_foorer.html' %}
+{% endblock %}
+{% block footFile %}
+    <!--   Core JS Files   -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/jquery-1.10.2.js' %}" type="text/javascript"></script>
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap-checkbox-radio.js' %}"></script>
+    <!--  Charts Plugin -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/chartist.min.js' %}"></script>
+    <!--  Notifications Plugin    -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap-notify.js' %}"></script>
+    <!--  Google Maps Plugin    -->
+    <!---<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>--->
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/paper-dashboard.js' %}"></script>
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/demo.js' %}"></script>
+    {% if saveToDB %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                demo.initChartist();
+                $.notify({
+                    icon: 'ti-hand-point-right',
+                    message: "{{ saveToDB.1 }}"
+                }, {
+                    type: '{{ saveToDB.0 }}',
+                    timer: 4000
+                });
+            });
+        </script>
+    {% endif %}
+
+{% endblock %}

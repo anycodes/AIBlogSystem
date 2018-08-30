@@ -1,0 +1,400 @@
+{% extends 'admin/defaultAdmin/base/base_main.html' %}
+{% load staticfiles %}
+{% block headFile %}
+    {% if saveToDB.0 == "success" or saveToDB.0 == "danger" %}
+        <meta http-equiv="refresh" content="2;URL=viewCategory?sort=date&snum=1">
+    {% endif %}
+{% endblock %}
+{% block sidebar %}
+    {% include 'admin/defaultAdmin/base/base_sidebar.html' %}
+{% endblock %}
+{% block navbar %}
+    {% include 'admin/defaultAdmin/base/base_navbar.html' %}
+{% endblock %}
+{% block content %}
+    <div class="content">
+        <form action="" method="post">
+            <div class="container-fluid">
+                <div class="col-md-12">
+                    <div class="card" style="padding: 10px">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <h5>标题</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <input type="text" class="form-control border-input" placeholder="在此处填写文章标题" name="title" value="{{ articleTitleView }}">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <select class="form-control border-input" name="type">
+                                        <option value="1">所有人可见</option>
+                                        <option value="2" {% if articleTypeView == "2" %}selected{% endif %}>登陆后可见</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <select class="form-control border-input" name="publish">
+                                        <option value="false">发布文章</option>
+                                        <option value="true" {% if articlePublishView %}selected{% endif %}>保存草稿</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input type="submit" class="form-control border-input" value="发布文章">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <h5>分类</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <select class="form-control border-input" name="category">
+                                        {% for eveCategory in categoryList %}
+                                            <option value="{{ eveCategory.cid }}" {% if eveCategory.cid == articleCategoryView.cid %}selected{% endif %}>{{ eveCategory.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <h5>标签</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control border-input" placeholder="在此处填写关键词，逗号隔开" name="tags" value="{{ articleTagsView }}">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <a id="btn1" onclick="btn1()" class="form-control border-input" style="padding-top: 10px"><b><center>更多</center></b></a>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div id="div1" style="display: none">
+                                        <div class="clearfix form-actions">
+                                            <script>
+                                                function Show_Hidden(obj) {
+                                                    if (obj.style.display == "block") {
+                                                        obj.style.display = 'none';
+                                                    }
+                                                    else {
+                                                        obj.style.display = 'block';
+                                                    }
+                                                }
+                                                function btn1() {
+                                                    Show_Hidden(document.getElementById('div1'))
+                                                }
+                                            </script>
+                                            <p>常用标签：{% for eveTag in tagList %}{{ eveTag.name }}, {% endfor %}</p>
+                                            <textarea rows="2" class="form-control border-input" placeholder="在此处填写摘要，如果不填写，系统会自动生成！" name="description">{{ articleDescView }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <textarea id="myEditor" name="content">{{ articleContentView }}</textarea>
+                        <br/>
+
+                        <script type="text/javascript">
+                            window.onload = function () {
+                                UE.getEditor('myEditor');
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include 'admin/defaultAdmin/base/base_foorer.html' %}
+{% endblock %}
+{% block footFile %}
+
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/ueditor.config.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'currency/tools/ueditor/_src/editor.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/browser.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/utils.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/EventBase.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/dtd.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/domUtils.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/Range.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/Selection.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/Editor.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/Editor.defaultoptions.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/loadconfig.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/ajax.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/filterword.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/node.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/htmlparser.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/filternode.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/plugin.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/keymap.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/core/localstorage.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/defaultfilter.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/inserthtml.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/autotypeset.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/autosubmit.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/background.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/image.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/justify.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/font.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/link.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/iframe.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/scrawl.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/removeformat.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/blockquote.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/convertcase.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/indent.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/print.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/preview.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/selectall.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/paragraph.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/directionality.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/horizontal.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/time.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/rowspacing.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/lineheight.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/insertcode.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/cleardoc.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/anchor.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/wordcount.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/pagebreak.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/wordimage.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/dragdrop.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/undo.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/copy.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/paste.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/puretxtpaste.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/list.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/source.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/enterkey.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/keystrokes.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/fiximgclick.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/autolink.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/autoheight.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/autofloat.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/video.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/table.core.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/table.cmds.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/table.action.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/table.sort.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/contextmenu.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/shortcutmenu.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/basestyle.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/elementpath.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/formatmatch.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/searchreplace.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/customstyle.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/catchremoteimage.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/snapscreen.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/insertparagraph.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/webapp.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/template.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/music.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/autoupload.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/charts.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/section.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/simpleupload.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/serverparam.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/insertfile.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/plugins/xssFilter.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'currency/tools/ueditor/_src/ui/ui.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/uiutils.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/uibase.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/separator.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'currency/tools/ueditor/_src/ui/mask.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/popup.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/colorpicker.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/tablepicker.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/stateful.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/button.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/splitbutton.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/colorbutton.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/tablebutton.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/autotypesetpicker.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/autotypesetbutton.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/cellalignpicker.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/pastepicker.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/toolbar.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'currency/tools/ueditor/_src/ui/menu.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/combox.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/dialog.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/menubutton.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/multiMenu.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/shortcutmenu.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/breakline.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/ui/message.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/adapter/editorui.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/adapter/editor.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/adapter/message.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'currency/tools/ueditor/_src/adapter/autosave.js' %}"></script>
+    <script type="text/javascript"
+            src="{% static 'currency/tools/ueditor/third-party/SyntaxHighlighter/shCore.js' %}"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('myEditor');
+        ue.ready(function () {
+            ue.setHeight(600);
+        });
+    </script>
+
+
+    <!--   Core JS Files   -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/jquery-1.10.2.js' %}" type="text/javascript"></script>
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap-checkbox-radio.js' %}"></script>
+    <!--  Charts Plugin -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/chartist.min.js' %}"></script>
+    <!--  Notifications Plugin    -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap-notify.js' %}"></script>
+    <!--  Google Maps Plugin    -->
+    <!---<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>--->
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/paper-dashboard.js' %}"></script>
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/demo.js' %}"></script>
+    {% if saveToDB %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                demo.initChartist();
+                $.notify({
+                    icon: 'ti-hand-point-right',
+                    message: "{{ saveToDB.1 }}"
+                }, {
+                    type: '{{ saveToDB.0 }}',
+                    timer: 4000
+                });
+            });
+        </script>
+    {% endif %}
+    <script>
+        SyntaxHighlighter.all() //执行代码高亮
+	</script>
+{% endblock %}

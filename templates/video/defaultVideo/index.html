@@ -1,0 +1,116 @@
+﻿{% load staticfiles %}
+{% load cache %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<link rel="icon" type="image/png" href="{% static 'currency/webFile/favicon.png' %}">
+	<meta name="keyword" content="{{ pageInformation.webKeyword }}"/>
+	<meta name="description" content="{{ pageInformation.webDescription }}"/>
+	<meta name="author" content="Liu Yu"/>
+	<!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+	<title>
+		{% if categoryData %}{{ categoryData.name }} - {% endif %}视频中心 - {{ pageInformation.webName }} - Powered by Liu
+		Yu!</title>
+	<!-- BOOTSTRAP CORE STYLE  -->
+	<link href="{% static 'video/defaultVideo/assets/css/bootstrap.css' %}" rel="stylesheet"/>
+	<!-- FONT AWESOME STYLE  -->
+	<link href="{% static 'video/defaultVideo/assets/css/font-awesome.css' %}" rel="stylesheet"/>
+	<!-- CUSTOM STYLE  -->
+	<link href="{% static 'video/defaultVideo/assets/css/style.css' %}" rel="stylesheet"/>
+</head>
+<body>
+<div class="navbar navbar-inverse set-radius-zero">
+	<div class="container">
+		<div class="navbar-header">
+			<h1 style="margin-left: 20px">
+				视频中心
+			</h1>
+
+		</div>
+	</div>
+</div>
+{% cache 6000 "video" %}
+<!-- MENU SECTION END-->
+<div class="content-wrapper">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				{% for eveCategory in category %}
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							{{ eveCategory.0 }}
+						</div>
+						<div class="panel-body">
+							<div class="panel-group" id="accordion">
+								{% for eveVideo in eveCategory.1 %}
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion"
+												   href="#foo-{{ eveCategory.2 }}-{{ forloop.counter }}"
+												   class="collapsed">{{ eveVideo.0 }}</a>
+											</h4>
+										</div>
+										<div id="foo-{{ eveCategory.2 }}-{{ forloop.counter }}"
+											 class="panel-collapse collapse" style="height: 0px;">
+											<div class="panel-body">
+												<center>
+													<iframe src="
+															{% autoescape off %}{{ eveVideo.1 }}{% endautoescape %}"
+															scrolling="no" border="0" frameborder="no" framespacing="0"
+															allowfullscreen="true" id="ifm" width="100%"></iframe>
+													<br>如果页面无法播放，可以<a href="http:
+														{% autoescape off %}{{ eveVideo.1 }}{% endautoescape %}">点击这里</a>
+												</center>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+		</div>
+		<!-- /. ROW  -->
+	</div>
+
+</div>
+{% endcache %}
+<!-- CONTENT-WRAPPER SECTION END-->
+<section class="footer-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<span style="float: left"><a href="/blog">博客首页</a> | <a href="/album">我的相册</a> |<a
+						href="/project">项目中心</a> | <a href="/resume">我的简历</a></span>
+				<span style="float: right">Powered by {{ pageInformation.webName }}</span>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- FOOTER SECTION END-->
+<!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+<!-- CORE JQUERY  -->
+<script src="{% static 'video/defaultVideo/assets/js/jquery-1.10.2.js' %}"></script>
+<!-- BOOTSTRAP SCRIPTS  -->
+<script src="{% static 'video/defaultVideo/assets/js/bootstrap.js' %}"></script>
+<!-- CUSTOM SCRIPTS  -->
+<script src="{% static 'video/defaultVideo/assets/js/custom.js' %}"></script>
+<script type="text/javascript">
+    target = document.querySelectorAll('iframe');
+    d1 = document.body.offsetWidth;
+    h = d1 * 0.5;
+    for (var i = 0; i < target.length; i++) {
+        //给页面里每个a标签设置target属性并赋值
+        target[i].setAttribute('height', h + 'px');
+    }
+</script>
+</body>
+</html>

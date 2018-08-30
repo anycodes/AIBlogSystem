@@ -1,0 +1,501 @@
+{% extends 'admin/defaultAdmin/base/base_main.html' %}
+{% load staticfiles %}
+{% block headFile %}
+    {% if saveToDB.0 == "success" or saveToDB.0 == "danger" %}
+        <meta http-equiv="refresh" content="2;URL=viewTag?sort=date&snum=1">
+    {% endif %}
+    <script type="text/javascript">
+        function checkall() {
+            var name = document.getElementById("name");
+            var name_z = name.value;
+            if (name_z == "" || name_z == null) {
+                alert("标签名称必须填写！");
+                return false;
+            }
+        }
+    </script>
+	<style>
+        .pagination {
+            margin: 20px 0;
+        }
+
+        .pagination ul {
+            display: inline-block;
+            *display: inline;
+            margin-bottom: 0;
+            margin-left: 0;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            *zoom: 1;
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .pagination ul > li {
+            display: inline;
+        }
+
+        .pagination ul > li > a,
+        .pagination ul > li > span {
+            float: left;
+            padding: 4px 12px;
+            line-height: 20px;
+            text-decoration: none;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-left-width: 0;
+        }
+
+        .pagination ul > li > a:hover,
+        .pagination ul > li > a:focus,
+        .pagination ul > .active > a,
+        .pagination ul > .active > span {
+            background-color: #f5f5f5;
+        }
+
+        .pagination ul > .active > a,
+        .pagination ul > .active > span {
+            color: #999999;
+            cursor: default;
+        }
+
+        .pagination ul > .disabled > span,
+        .pagination ul > .disabled > a,
+        .pagination ul > .disabled > a:hover,
+        .pagination ul > .disabled > a:focus {
+            color: #999999;
+            cursor: default;
+            background-color: transparent;
+        }
+
+        .pagination ul > li:first-child > a,
+        .pagination ul > li:first-child > span {
+            border-left-width: 1px;
+            -webkit-border-bottom-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            -webkit-border-top-left-radius: 4px;
+            border-top-left-radius: 4px;
+            -moz-border-radius-bottomleft: 4px;
+            -moz-border-radius-topleft: 4px;
+        }
+
+        .pagination ul > li:last-child > a,
+        .pagination ul > li:last-child > span {
+            -webkit-border-top-right-radius: 4px;
+            border-top-right-radius: 4px;
+            -webkit-border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            -moz-border-radius-topright: 4px;
+            -moz-border-radius-bottomright: 4px;
+        }
+
+        .pagination-centered {
+            text-align: center;
+        }
+
+        .pagination-right {
+            text-align: right;
+        }
+
+        .pagination-large ul > li > a,
+        .pagination-large ul > li > span {
+            padding: 11px 19px;
+            font-size: 17.5px;
+        }
+
+        .pagination-large ul > li:first-child > a,
+        .pagination-large ul > li:first-child > span {
+            -webkit-border-bottom-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            -webkit-border-top-left-radius: 6px;
+            border-top-left-radius: 6px;
+            -moz-border-radius-bottomleft: 6px;
+            -moz-border-radius-topleft: 6px;
+        }
+
+        .pagination-large ul > li:last-child > a,
+        .pagination-large ul > li:last-child > span {
+            -webkit-border-top-right-radius: 6px;
+            border-top-right-radius: 6px;
+            -webkit-border-bottom-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            -moz-border-radius-topright: 6px;
+            -moz-border-radius-bottomright: 6px;
+        }
+
+        .pagination-mini ul > li:first-child > a,
+        .pagination-small ul > li:first-child > a,
+        .pagination-mini ul > li:first-child > span,
+        .pagination-small ul > li:first-child > span {
+            -webkit-border-bottom-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            -webkit-border-top-left-radius: 3px;
+            border-top-left-radius: 3px;
+            -moz-border-radius-bottomleft: 3px;
+            -moz-border-radius-topleft: 3px;
+        }
+
+        .pagination-mini ul > li:last-child > a,
+        .pagination-small ul > li:last-child > a,
+        .pagination-mini ul > li:last-child > span,
+        .pagination-small ul > li:last-child > span {
+            -webkit-border-top-right-radius: 3px;
+            border-top-right-radius: 3px;
+            -webkit-border-bottom-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            -moz-border-radius-topright: 3px;
+            -moz-border-radius-bottomright: 3px;
+        }
+
+        .pagination-small ul > li > a,
+        .pagination-small ul > li > span {
+            padding: 2px 10px;
+            font-size: 11.9px;
+        }
+
+        .pagination-mini ul > li > a,
+        .pagination-mini ul > li > span {
+            padding: 0 6px;
+            font-size: 10.5px;
+        }
+    </style>
+{% endblock %}
+{% block sidebar %}
+    {% include 'admin/defaultAdmin/base/base_sidebar.html' %}
+{% endblock %}
+{% block navbar %}
+    {% include 'admin/defaultAdmin/base/base_navbar.html' %}
+{% endblock %}
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="content">
+                            <form action="" method="post" onsubmit="return checkall()">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>标签名称</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control border-input" placeholder="在此处填写分类名" name="name" id="name" value="{{ tagNameView }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>标签类型</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <select class="form-control border-input" name="type">
+                                                <option value="1">文章标签</option>
+{#                                                <option value="2" {% if tagTypeView == "2" %}selected{% endif %}>项目标签</option>#}
+                                                <option value="3" {% if tagTypeView == "3" %}selected{% endif %}>图片标签</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>标签说明</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <textarea rows="5" class="form-control border-input" placeholder="在此处填写备注" name="remark">{{ tagRemarkView }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="reset" class="btn btn-info btn-fill btn-wd">重置</button>
+                                    <button type="submit" class="btn btn-info btn-fill btn-wd">提交</button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		{% if tidData %}
+				{% if tagTypeView == "1" %}
+					<div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="content">
+                                <div class="content table-responsive table-full-width">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <th>ID</th>
+                                        <th>文章名称</th>
+                                        <th>分类</th>
+                                        <th>点击</th>
+                                        <th>添加时间</th>
+                                        <th>文章标签</th>
+                                        <th>文章作者</th>
+                                        <th>文章类型</th>
+                                        <th>操作</th>
+                                        </thead>
+                                        <tbody>
+                                        {% for eveArticle in articleList %}
+                                            <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td style="width: 300px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{ eveArticle.title }}</td>
+                                                <td>{{ eveArticle.category.name }}</td>
+                                                <td>{{ eveArticle.click_count }}</td>
+                                                <td>{{ eveArticle.date_publish }}</td>
+                                                <td>{% for eveTag in eveArticle.tag.all %}{{ eveTag.name }},{% endfor %}</td>
+                                                <td>{{ eveArticle.user.username }}</td>
+                                                <td>{% if eveArticle.type == "1" %}所有人可见{% else %}登陆后可见{% endif %}/{% if eveArticle.is_recommend %}草稿{% else %}已发布{% endif %}</td>
+                                                <td><a href="/blog/content?aid={{ eveArticle.aid }}" style="color: black">查看</a>
+                                                    <a href="addArticle?tid={{ tidData }}&aid={{ eveArticle.aid }}" style="color: black">修改</a>
+                                                    <a href="{{ pageUrl }}{% if "?" in pageUrl %}&{% else %}?{% endif %}tid={{ tidData }}&dele=true&aid={{ eveArticle.aid }}"style="color: black">删除</a></td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <center>
+                                        <div class="pagination pagination-centered">
+                                            <ul>
+                                                {% if pageNum|add:-1 < 1 %}
+                                                    <li><a href="#"><</a></li>
+                                                {% else %}
+                                                    <li>
+                                                        <a href="?page={{ pageNum|add:-1 }}{% if defaultString %}&{{ defaultString }}{% endif %}"><</a>
+                                                    </li>
+                                                {% endif %}
+
+
+                                                {% if pageNum|add:-3 > 0 %}
+                                                    <li>
+                                                        <a href="?tid={{ tidData }}&page={{ pageNum|add:-3 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:-3 }}</a>
+                                                    </li>
+                                                {% endif %}
+
+                                                {% if pageNum|add:-2 > 0 %}
+                                                    <li>
+                                                        <a href="?tid={{ tidData }}&page={{ pageNum|add:-2 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:-2 }}</a>
+                                                    </li>
+                                                {% endif %}
+
+                                                {% if pageNum|add:-1 > 0 %}
+                                                    <li>
+                                                        <a href="?tid={{ tidData }}&page={{ pageNum|add:-1 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:-1 }}</a>
+                                                    </li>
+                                                {% endif %}
+
+                                                <li><a href="#" class="page active">
+                                                    {% if pageNum %}{{ pageNum }}{% else %}0{% endif %}</a></li>
+
+
+                                                {% if pageNum|add:1 <= articleList.paginator.num_pages %}
+                                                    <li>
+                                                        <a href="?tid={{ tidData }}&page={{ pageNum|add:1 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:1 }}</a>
+                                                    </li>
+                                                {% endif %}
+
+                                                {% if pageNum|add:2 <= articleList.paginator.num_pages %}
+                                                    <li>
+                                                        <a href="?tid={{ tidData }}&page={{ pageNum|add:2 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:2 }}</a>
+                                                    </li>
+                                                {% endif %}
+
+                                                {% if pageNum|add:3 <= articleList.paginator.num_pages %}
+                                                    <li>
+                                                        <a href="?tid={{ tidData }}&page={{ pageNum|add:3 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:3 }}</a>
+                                                    </li>
+                                                {% endif %}
+
+
+
+                                                {% if pageNum|add:1 <= articleList.paginator.num_pages %}
+                                                    <li>
+                                                        <a href="?tid={{ tidData }}&page={{ pageNum|add:1 }}{% if defaultString %}&{{ defaultString }}{% endif %}">></a>
+                                                    </li>
+                                                {% else %}
+                                                    <li><a href="#">></a></li>
+                                                {% endif %}
+
+                                            </ul>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				{% else %}
+					<div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="content table-responsive table-full-width">
+                            <table class="table table-striped">
+                                <thead>
+                                <th>ID</th>
+                                <th>图片名称</th>
+                                <th>分类</th>
+                                <th>添加时间</th>
+                                <th>图片标签</th>
+                                <th>可见类型</th>
+                                <th>操作</th>
+                                </thead>
+                                <tbody>
+                                {% for evePhoto in photoList %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ evePhoto.picture.name | slice:"15" }}</td>
+                                        <td>{{ evePhoto.name }}</td>
+                                        <td>{{ evePhoto.picture.date }}</td>
+                                        <td>{% for eveTag in evePhoto.tag.all %}{{ eveTag.name }},{% endfor %}</td>
+                                        <td>{% if evePhoto.is_recommend %}可见{% else %}不可见{% endif %}</td>
+                                        <td><a href="uploadPhoto?tid={{ tidData }}&&iid={{ evePhoto.iid }}" style="color: black">修改</a>
+                                            <a href="{{ pageUrl }}{% if "?" in pageUrl%}&{% else %}?{% endif %}tid={{ tidData }}&dele=true&iid={{ evePhoto.iid }}" style="color: black">删除</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <center>
+                                <div class="pagination pagination-centered">
+                                    <ul>
+                                        {% if pageNum|add:-1 < 1 %}
+                                            <li><a href="#"><</a></li>
+                                        {% else %}
+                                            <li>
+                                                <a href="?tid={{ tidData }}&page={{ pageNum|add:-1 }}{% if defaultString %}&{{ defaultString }}{% endif %}"><</a>
+                                            </li>
+                                        {% endif %}
+
+
+                                        {% if pageNum|add:-3 > 0 %}
+                                            <li>
+                                                <a href="?tid={{ tidData }}&page={{ pageNum|add:-3 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:-3 }}</a>
+                                            </li>
+                                        {% endif %}
+
+                                        {% if pageNum|add:-2 > 0 %}
+                                            <li>
+                                                <a href="?tid={{ tidData }}&page={{ pageNum|add:-2 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:-2 }}</a></li>
+                                        {% endif %}
+
+                                        {% if pageNum|add:-1 > 0 %}
+                                            <li>
+                                                <a href="?tid={{ tidData }}&page={{ pageNum|add:-1 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:-1 }}</a></li>
+                                        {% endif %}
+
+                                        <li><a href="#" class="page active">{% if pageNum %}{{ pageNum }}{% else %}0{% endif %}</a></li>
+
+
+                                        {% if pageNum|add:1 <= photoList.paginator.num_pages %}
+                                            <li>
+                                                <a href="?tid={{ tidData }}&page={{ pageNum|add:1 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:1 }}</a></li>
+                                        {% endif %}
+
+                                        {% if pageNum|add:2 <= photoList.paginator.num_pages %}
+                                            <li>
+                                                <a href="?tid={{ tidData }}&page={{ pageNum|add:2 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:2 }}</a></li>
+                                        {% endif %}
+
+                                        {% if pageNum|add:3 <= photoList.paginator.num_pages %}
+                                            <li>
+                                                <a href="?tid={{ tidData }}&page={{ pageNum|add:3 }}{% if defaultString %}&{{ defaultString }}{% endif %}">{{ pageNum|add:3 }}</a></li>
+                                        {% endif %}
+
+
+
+                                        {% if pageNum|add:1 <= photoList.paginator.num_pages %}
+                                            <li>
+                                                <a href="?tid={{ tidData }}&page={{ pageNum|add:1 }}{% if defaultString %}&{{ defaultString }}{% endif %}">></a>
+                                            </li>
+                                        {% else %}
+                                            <li><a href="#">></a></li>
+                                        {% endif %}
+
+                                    </ul>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+				{% endif %}
+
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+    {% include 'admin/defaultAdmin/base/base_foorer.html' %}
+{% endblock %}
+{% block footFile %}
+    <!--   Core JS Files   -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/jquery-1.10.2.js' %}" type="text/javascript"></script>
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap-checkbox-radio.js' %}"></script>
+    <!--  Charts Plugin -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/chartist.min.js' %}"></script>
+    <!--  Notifications Plugin    -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap-notify.js' %}"></script>
+    <!--  Google Maps Plugin    -->
+    <!---<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>--->
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/paper-dashboard.js' %}"></script>
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/demo.js' %}"></script>
+    {% if saveToDB %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                demo.initChartist();
+                $.notify({
+                    icon: 'ti-hand-point-right',
+                    message: "{{ saveToDB.1 }}"
+                }, {
+                    type: '{{ saveToDB.0 }}',
+                    timer: 4000
+                });
+            });
+        </script>
+    {% endif %}
+
+{% endblock %}

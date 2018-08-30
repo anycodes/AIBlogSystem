@@ -1,0 +1,184 @@
+{% extends 'usercenter/defaultUserCenter/base.html' %}
+
+{% block content %}
+	{% if status %}
+		<script>
+			alert("{{ status }}")
+		</script>
+	{% endif %}
+	<div id="user-profile-3" class="user-profile row">
+		<div class="col-sm-offset-1 col-sm-10">
+			<div class="space"></div>
+			<form class="form-horizontal" action="" method="post">
+				<div class="tabbable">
+					<ul class="nav nav-tabs padding-16">
+						<li class="active">
+							<a data-toggle="tab" href="#edit-basic">
+								<i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+								基本信息
+							</a>
+						</li>
+						<li>
+							<a data-toggle="tab" href="#edit-password">
+								<i class="blue ace-icon fa fa-key bigger-125"></i>
+								密码
+							</a>
+						</li>
+					</ul>
+
+					<div class="tab-content profile-edit-tab-content">
+						<div id="edit-basic" class="tab-pane in active">
+							<h4 class="header blue bolder smaller">基本信息</h4>
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-4" style="float: right">
+									<img src="{% if userData.photo %}{{ userData.photo }}{% else %}/files/userFace/1.jpg{% endif %}" id="idFace" width="30%">
+								</div>
+
+								<div class="vspace-12-sm"></div>
+
+								<div class="col-xs-12 col-sm-8">
+
+									<div class="form-group">
+										<label class="col-sm-4 control-label no-padding-right"
+											   for="form-field-username">头像</label>
+
+										<div class="col-sm-8">
+											<select onchange="document.images['idFace'].src=options[selectedIndex].value;" name="photo" autocomplete="off">
+												{% for evePic in photoFile %}
+													<option value="{{ evePic.1 }}" {% if evePic.1 == userData.photo %}selected="selected"{% endif %}>头像{{ evePic.0 }}</option>
+												{% endfor %}
+											</select>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-4 control-label no-padding-right" for="form-field-first">姓名</label>
+										<div class="col-sm-8">
+											<input class="input" type="text" id="form-field-username" value="{{ userData.username }}" readonly/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-4 control-label no-padding-right" for="form-field-first">性别</label>
+										<div class="col-sm-8" style="margin-top: 7px">
+											<label class="inline">
+												<input name="sex" type="radio" class="ace" {% if userData.sex != '女' %}checked{% endif %} value="男"/>
+												<span class="lbl middle"> 男</span>
+											</label>
+
+											&nbsp; &nbsp; &nbsp;
+											<label class="inline">
+												<input name="sex" type="radio" class="ace" {% if userData.sex == '女' %}checked{% endif %} value="女"/>
+												<span class="lbl middle"> 女</span>
+											</label>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="space"></div>
+							<h4 class="header blue bolder smaller">联系方式</h4>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right"
+									   for="form-field-email">邮箱</label>
+								<div class="col-sm-9">
+									<span class="input-icon input-icon-right">
+										<input type="email" id="form-field-email" value="{{ userData.email }}" name="email"/>
+										<i class="ace-icon fa fa-envelope"></i>
+									</span>
+								</div>
+							</div>
+
+							<div class="space-4"></div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right"
+									   for="form-field-website">微信</label>
+								<div class="col-sm-9">
+									<span class="input-icon input-icon-right">
+										<input type="text" id="form-field" value="{{ userData.wechat }}" name="wechat"/>
+										<i class="ace-icon fa fa-wechat"></i>
+									</span>
+								</div>
+							</div>
+							<div class="space-4"></div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right"
+									   for="form-field-website">QQ</label>
+								<div class="col-sm-9">
+									<span class="input-icon input-icon-right">
+										<input type="text" id="form-field" value="{{ userData.qq }}" name="qq"/>
+										<i class="ace-icon fa fa-qq"></i>
+									</span>
+								</div>
+							</div>
+							<div class="space-4"></div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right"
+									   for="form-field-website">电话</label>
+								<div class="col-sm-9">
+									<span class="input-icon input-icon-right">
+										<input type="text" id="form-field" value="{{ userData.phone }}" name="phone"/>
+										<i class="ace-icon fa fa-phone"></i>
+									</span>
+								</div>
+							</div>
+							<div class="space"></div>
+						</div>
+						<div id="edit-password" class="tab-pane">
+							<div class="space-10"></div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">新密码</label>
+								<div class="col-sm-9">
+									<input type="password" id="form-field-pass1" name="password" value="{{ userData.password }}"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="clearfix form-actions">
+					<div class="col-md-offset-3 col-md-9">
+						<button class="btn btn-info" type="submit">
+							<i class="ace-icon fa fa-check bigger-110"></i>
+							确定
+						</button>
+
+						&nbsp; &nbsp;
+						<button class="btn" type="reset">
+							<i class="ace-icon fa fa-undo bigger-110"></i>
+							重置
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}
+
+
+{% block footer %}
+	<script src="/static/usercenter/defaultUserCenter/assets/js/jquery-ui.custom.min.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/jquery.ui.touch-punch.min.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/jquery.gritter.min.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/bootbox.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/jquery.easypiechart.min.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/bootstrap-datepicker.min.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/jquery.hotkeys.index.min.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/bootstrap-wysiwyg.min.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/select2.min.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/spinbox.min.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/bootstrap-editable.min.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/ace-editable.min.js"></script>
+	<script src="/static/usercenter/defaultUserCenter/assets/js/jquery.maskedinput.min.js"></script>
+
+{% endblock %}

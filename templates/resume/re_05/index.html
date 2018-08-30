@@ -1,0 +1,311 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+	<!--- Basic Page Needs
+    ================================================== -->
+	<meta charset="utf-8">
+	<title>{{ totalData.zh_name.0 }}的简历 - Powered by {{ totalInfor.webName }}</title>
+
+	<meta name="keyword" content="{{ pageInformation.webKeyword }}"/>
+	<meta name="description" content="{{ pageInformation.webDescription }}"/>
+
+	<!-- Mobile Specific Metas
+    ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+    ================================================== -->
+	<link rel="stylesheet" href="/static/resume/re_05/css/default.css">
+	<link rel="stylesheet" href="/static/resume/re_05/css/layout.css">
+	<link rel="stylesheet" href="/static/resume/re_05/css/media-queries.css">
+	<link rel="stylesheet" href="/static/resume/re_05/css/magnific-popup.css">
+
+	<!-- Script
+    ================================================== -->
+	<script src="/static/resume/re_05/js/modernizr.js"></script>
+
+	<!-- Favicons
+     ================================================== -->
+	<link rel="icon" type="image/png" href="{% static 'currency/webFile/favicon.png' %}">
+
+</head>
+
+<body>
+
+<!-- Header
+================================================== -->
+<header id="home">
+
+	<nav id="nav-wrap">
+
+		<a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+		<a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+
+		<ul id="nav" class="nav">
+			<li class="current"><a class="smoothscroll" href="#home">首页</a></li>
+			<li><a class="smoothscroll" href="#about">关于我</a></li>
+			<li><a class="smoothscroll" href="#resume">教育</a></li>
+			<li><a class="smoothscroll" href="#work">工作</a></li>
+			<li><a class="smoothscroll" href="#jiangli">奖励</a></li>
+		</ul> <!-- end #nav -->
+
+	</nav> <!-- end #nav-wrap -->
+
+	<div class="row banner">
+		<div class="banner-text">
+			<h1 class="responsive-headline">{{ totalData.zh_name.0 }}</h1>
+			<h3>{{ totalData.short_intro.0 }}</h3>
+			<hr/>
+			<center>www.pmliu.cn</center>
+		</div>
+	</div>
+
+	<p class="scrolldown">
+		<a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
+	</p>
+
+</header> <!-- Header End -->
+
+
+<!-- About Section
+================================================== -->
+<section id="about">
+
+	<div class="row">
+
+		<div class="twelve columns main-col">
+
+			<h2>关于我</h2>
+
+			<p>{{ totalData.introduction.0 }}
+			</p>
+
+
+		</div> <!-- end .main-col -->
+
+	</div>
+
+</section> <!-- About Section End-->
+
+
+<!-- Resume Section
+================================================== -->
+<section id="resume">
+
+	<!-- Education
+    ----------------------------------------------- -->
+	<div class="row education">
+
+		<div class="three columns header-col">
+			<h1><span>教育</span></h1>
+		</div>
+
+		<div class="nine columns main-col">
+
+			<div class="row item">
+
+				<div class="twelve columns">
+
+					<h3>{{ totalData.edu_mas_name.0 }}</h3>
+					<p class="info">{{ totalData.edu_mas_major.0 }} <span>&bull;</span> <em
+							class="date">（{{ totalData.edu_mas_time.0 }}）</em></p>
+
+					<p>
+						{{ totalData.edu_mas_con.0 }}
+					</p>
+
+				</div>
+
+			</div> <!-- item end -->
+
+			<div class="row item">
+
+				<div class="twelve columns">
+
+					<h3>{{ totalData.edu_uni_name.0 }}</h3>
+					<p class="info">{{ totalData.edu_uni_major.0 }} <span>&bull;</span> <em
+							class="date">（{{ totalData.edu_uni_time.0 }}）</em></p>
+
+					<p>
+						{{ totalData.edu_uni_con.0 }}
+					</p>
+
+				</div>
+
+			</div> <!-- item end -->
+			<div class="row item">
+
+				<div class="twelve columns">
+
+					<h3>{{ totalData.edu_exc_name.0 }}</h3>
+					<p class="info">{{ totalData.edu_exc_major.0 }} <span>&bull;</span> <em
+							class="date">（{{ totalData.edu_exc_time.0 }}）</em></p>
+
+					<p>
+						{{ totalData.edu_exc_con.0 }}
+					</p>
+
+				</div>
+
+			</div> <!-- item end -->
+		</div> <!-- main-col end -->
+
+	</div> <!-- End Education -->
+
+
+	<!-- Work
+    ----------------------------------------------- -->
+	<div class="row work" id="work">
+
+		<div class="three columns header-col">
+			<h1><span>工作</span></h1>
+		</div>
+
+		<div class="nine columns main-col">
+
+			<div class="row item">
+
+				<div class="twelve columns">
+
+					<h3>{{ totalData.work_4_name.0 }}</h3>
+					<p class="info">{{ totalData.work_4_pos.0 }}<span>&bull;</span> <em class="date">（{{ totalData.work_4_time.0 }}）</em>
+					</p>
+
+					<p>
+						{{ totalData.work_4_con.0 }}
+					</p>
+
+				</div>
+
+			</div> <!-- item end -->
+
+			<div class="row item">
+
+				<div class="twelve columns">
+
+					<h3>{{ totalData.work_3_name.0 }}</h3>
+					<p class="info">{{ totalData.work_3_pos.0 }}<span>&bull;</span> <em class="date">（{{ totalData.work_3_time.0 }}）</em>
+					</p>
+
+					<p>
+						{{ totalData.work_3_con.0 }}
+					</p>
+
+				</div>
+
+			</div> <!-- item end -->
+
+			<div class="row item">
+
+				<div class="twelve columns">
+
+					<h3>{{ totalData.work_2_name.0 }}</h3>
+					<p class="info">{{ totalData.work_2_pos.0 }}<span>&bull;</span> <em class="date">（{{ totalData.work_2_time.0 }}）</em>
+					</p>
+
+					<p>
+						{{ totalData.work_2_con.0 }}
+					</p>
+
+				</div>
+
+			</div> <!-- item end -->
+
+			<div class="row item">
+
+				<div class="twelve columns">
+
+					<h3>{{ totalData.work_1_name.0 }}</h3>
+					<p class="info">{{ totalData.work_1_pos.0 }}<span>&bull;</span> <em class="date">（{{ totalData.work_1_time.0 }}）</em>
+					</p>
+
+					<p>
+						{{ totalData.work_1_con.0 }}
+					</p>
+
+				</div>
+
+			</div> <!-- item end -->
+
+
+		</div> <!-- main-col end -->
+
+	</div> <!-- End Work -->
+
+
+	<!-- Skills
+    ----------------------------------------------- -->
+	<div class="row skill" id="jiangli">
+
+		<div class="three columns header-col">
+			<h1><span>奖励</span></h1>
+		</div>
+
+		<div class="nine columns main-col">
+
+			<p><div style="margin: 10px 10px 10px 10px"><p>{{ totalData.awards.0 }}<br>
+				{{ totalData.awards.1 }}<br>
+				{{ totalData.awards.2 }}<br>
+				{{ totalData.awards.3 }}<br>
+				{{ totalData.awards.4 }}<br>
+				{{ totalData.awards.5 }}<br>
+				{{ totalData.awards.6 }}<br>
+				{{ totalData.awards.7 }}<br>
+				{{ totalData.awards.8 }}<br>
+				{{ totalData.awards.9 }}<br>
+				{{ totalData.awards.10 }}<br>
+				{{ totalData.awards.11 }}<br>
+
+			</p></div>
+			</p>
+
+		</div> <!-- main-col end -->
+
+	</div> <!-- End skills -->
+
+</section> <!-- Resume Section End-->
+
+<!-- Contact Section
+================================================== -->
+
+
+<!-- footer
+================================================== -->
+<footer>
+
+	<div class="row">
+
+		<div class="twelve columns">
+
+			<p><font color="white">Powered by {{ totalInfor.webName }}</font><br><br>
+				<a href="/index">网站首页</a> | <a href="/blog">博客首页</a> | <a href="/album">我的相册</a> |
+				<a href="/video">视频中心</a> | <a href="/project">项目中心</a></p>
+
+		</div>
+
+		<div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
+
+	</div>
+
+</footer> <!-- Footer End-->
+
+<!-- Java Script
+================================================== -->
+<script src="/static/resume/re_05/js/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/static/resume/re_05/js/jquery-1.10.2.min.js"><\/script>')</script>
+<script type="text/javascript" src="/static/resume/re_05/js/jquery-migrate-1.2.1.min.js"></script>
+
+<script src="/static/resume/re_05/js/jquery.flexslider.js"></script>
+<script src="/static/resume/re_05/js/waypoints.js"></script>
+<script src="/static/resume/re_05/js/jquery.fittext.js"></script>
+<script src="/static/resume/re_05/js/magnific-popup.js"></script>
+<script src="/static/resume/re_05/js/init.js"></script>
+
+</body>
+
+</html>

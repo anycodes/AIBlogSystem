@@ -1,0 +1,157 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>{{ totalData.zh_name.0 }}的简历 - Powered by {{ totalInfor.webName }}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keyword" content="{{ pageInformation.webKeyword }}"/>
+	<meta name="description" content="{{ pageInformation.webDescription }}"/>
+	<link rel="icon" type="image/png" href="{% static 'currency/webFile/favicon.png' %}">
+
+	<!-- stylesheet css -->
+	<link rel="stylesheet" href="/static/resume/re_03/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/resume/re_03/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/static/resume/re_03/css/templatemo-blue.css">
+</head>
+<body data-spy="scroll" data-target=".navbar-collapse">
+
+<!-- preloader section -->
+<div class="preloader">
+	<div class="sk-spinner sk-spinner-wordpress">
+		<span class="sk-inner-circle"></span>
+	</div>
+</div>
+
+<!-- header section -->
+<header>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<img src="{{ totalData.photo.0 }}" width="150px" class="img-responsive img-circle tm-border"
+					 alt="templatemo easy profile">
+				<hr>
+				<h1 class="tm-title bold shadow">{{ totalData.zh_name.0 }}</h1>
+				<h1 class="white bold shadow">软件工程师</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+<!-- about and skills section -->
+<section class="container">
+	<div class="row">
+		<div class="col-md-6 col-sm-12">
+			<div class="about">
+				<h3 class="accent">个人简介</h3>
+				<h2></h2>
+				<p>{{ totalData.short_intro.0 }}</p>
+			</div>
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<div class="skills">
+				<h2 class="white">基本技能</h2>
+				<strong>Python编程</strong>
+				<span class="pull-right">{{ totalData.skill_python.0 }}%</span>
+				<div class="progress">
+					<div class="progress-bar progress-bar-primary" role="progressbar"
+						 aria-valuenow="{{ totalData.skill_python.0 }}" aria-valuemin="0" aria-valuemax="100"
+						 style="width: {{ totalData.skill_python.0 }}%;"></div>
+				</div>
+				<strong>机器学习</strong>
+				<span class="pull-right">{{ totalData.skill_ml.0 }}%</span>
+				<div class="progress">
+					<div class="progress-bar progress-bar-primary" role="progressbar"
+						 aria-valuenow="{{ totalData.skill_ml.0 }}" aria-valuemin="0" aria-valuemax="100"
+						 style="width: {{ totalData.skill_ml.0 }}%;"></div>
+				</div>
+				<strong>爬虫相关</strong>
+				<span class="pull-right">{{ totalData.skill_spider.0 }}%</span>
+				<div class="progress">
+					<div class="progress-bar progress-bar-primary" role="progressbar"
+						 aria-valuenow="{{ totalData.skill_spider.0 }}" aria-valuemin="0" aria-valuemax="100"
+						 style="width: {{ totalData.skill_spider.0 }}%;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- education and languages -->
+<section class="container">
+	<div class="row">
+		<div class="col-md-8 col-sm-12">
+			<div class="education">
+				<h2 class="white">教育经历</h2>
+				<div class="education-content">
+					<h4 class="education-title accent">{{ totalData.edu_mas_major.0 }}</h4>
+					<div class="education-school">
+						<h5>{{ totalData.edu_mas_name.0 }}</h5><span></span>
+						<h5>{{ totalData.edu_mas_time.0 }}</h5>
+					</div>
+					<p class="education-description">{{ totalData.edu_mas_con.0 }}</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-12">
+			<div class="languages">
+				<h2>项目列表</h2>
+				<ul>
+					<a href="http://www.anycodes.cn">Anycodes在线编程</a><br>
+					<a href="http://tiku.anycodes.cn">程序员题库</a><br>
+					<a href="https://space.bilibili.com/35850273/">直播分享计划</a><br>
+					<a href="http://www.apihelper.cn">Tencent Cloud API Helper</a><br>
+					<a href="/project">更多项目</a><br>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- contact and experience -->
+<section class="container">
+	<div class="row">
+		<div class="col-md-4 col-sm-12">
+			<div class="contact">
+				<h2>联系我</h2>
+				<p><i class="fa fa-map-marker"></i>{{ totalData.address.0 }}</p>
+				<p><i class="fa fa-phone"></i>{{ totalData.phone.0 }}</p>
+				<p><i class="fa fa-envelope"></i>{{ totalData.email.0 }}</p>
+				<p><i class="fa fa-globe"></i>{{ totalData.homepage.0 }}</p>
+			</div>
+		</div>
+		<div class="col-md-8 col-sm-12">
+			<div class="experience">
+				<h2 class="white">工作经历</h2>
+				<div class="experience-content">
+					<h4 class="experience-title accent">{{ totalData.work_4_pos.0 }}</h4>
+					<h5>{{ totalData.work_4_name.0 }}</h5><span></span>
+					<h5>{{ totalData.work_4_time.0 }}</h5>
+					<p class="education-description">{{ totalData.work_4_con.0 }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- footer section -->
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<p>Powered by {{ totalInfor.webName }}<br><br>
+				<a href="/blog">博客首页</a> | <a href="/album">我的相册</a> |
+                    <a href="/video">视频中心</a> | <a href="/project">项目中心</a></p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- javascript js -->
+<script src="/static/resume/re_03/js/jquery.js"></script>
+<script src="/static/resume/re_03/js/bootstrap.min.js"></script>
+<script src="/static/resume/re_03/js/jquery.backstretch.min.js"></script>
+<script src="/static/resume/re_03/js/custom.js"></script>
+
+</body>
+</html>

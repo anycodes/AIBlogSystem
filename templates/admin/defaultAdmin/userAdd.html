@@ -1,0 +1,258 @@
+{% extends 'admin/defaultAdmin/base/base_main.html' %}
+{% load staticfiles %}
+{% block headFile %}
+    {% if saveToDB.0 == "success" or saveToDB.0 == "danger" %}
+        <meta http-equiv="refresh" content="2;URL=viewTag?sort=date&snum=1">
+    {% endif %}
+    <script type="text/javascript">
+        function checkall() {
+            var name = document.getElementById("name");
+            var name_z = name.value;
+            if (name_z == "" || name_z == null) {
+                alert("分类名称必须填写！");
+                return false;
+            }
+        }
+    </script>
+{% endblock %}
+{% block sidebar %}
+    {% include 'admin/defaultAdmin/base/base_sidebar.html' %}
+{% endblock %}
+{% block navbar %}
+    {% include 'admin/defaultAdmin/base/base_navbar.html' %}
+{% endblock %}
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="content">
+                            <form action="" method="post" onsubmit="return checkall()">
+							<div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>用户头像</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+											<select class="form-control border-input" onchange="document.images['idFace'].src=options[selectedIndex].value;" name="photo">
+												{% for evePic in photoFile %}
+												<option value="{{ evePic.1 }}" {% if evePic.1 == userPhotoView %}selected{% endif %}>头像{{ evePic.0 }}</option>
+												{% endfor %}
+											</select>
+                                        </div>
+
+                                    </div>
+								<div class="col-md-2">
+									<center><img src="{% if userPhotoView %}{{ userPhotoView }}{% else %}/files/userFace/1.jpg{% endif %}" id="idFace" width="30%" ></center>
+								</div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>用户名称</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control border-input" placeholder="在此处填写用户名" name="name" id="name" value="{{ userNameView }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                </div>
+                             <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>用户密码</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control border-input" placeholder="在此处填写密码" name="password" id="password" value="{{ userPasswordView }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>用户类型</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="form-control border-input" name="type">
+                                                <option value="2">普通用户</option>
+                                                <option value="1" {% if userTypeView == "1" %}selected{% endif %}>管理员</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>用户性别</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="form-control border-input" name="sex">
+                                                <option value="1">男</option>
+                                                <option value="2" {% if userSexView == "2" %}selected{% endif %}>女</option>
+                                                <option value="3" {% if userSexView == "3" %}selected{% endif %}>未知</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>邮箱</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control border-input" placeholder="在此处填写邮箱" name="email" id="email" value="{{ userEmailView }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>QQ</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control border-input" placeholder="在此处填写QQ号" name="qq" id="qq" value="{% if userQQ %}{{ userQQView }}{% endif %}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>电话号</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control border-input" placeholder="在此处填写电话号" name="phone" id="phone" value="{% if userPhoneView %}{{ userPhoneView }}{% endif %}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <h5>状态</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="form-control border-input" name="state">
+                                                <option value="1">正常使用</option>
+                                                <option value="2" {% if userStateView == "2" %}selected{% endif %}>限制登陆</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="reset" class="btn btn-info btn-fill btn-wd">重置</button>
+                                    <button type="submit" class="btn btn-info btn-fill btn-wd">提交</button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+    {% include 'admin/defaultAdmin/base/base_foorer.html' %}
+{% endblock %}
+{% block footFile %}
+    <!--   Core JS Files   -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/jquery-1.10.2.js' %}" type="text/javascript"></script>
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap-checkbox-radio.js' %}"></script>
+    <!--  Charts Plugin -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/chartist.min.js' %}"></script>
+    <!--  Notifications Plugin    -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap-notify.js' %}"></script>
+    <!--  Google Maps Plugin    -->
+    <!---<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>--->
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/paper-dashboard.js' %}"></script>
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/demo.js' %}"></script>
+    {% if saveToDB %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                demo.initChartist();
+                $.notify({
+                    icon: 'ti-hand-point-right',
+                    message: "{{ saveToDB.1 }}"
+                }, {
+                    type: '{{ saveToDB.0 }}',
+                    timer: 4000
+                });
+            });
+        </script>
+    {% endif %}
+
+{% endblock %}

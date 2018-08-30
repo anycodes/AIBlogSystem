@@ -1,0 +1,176 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>{{ totalData.zh_name.0 }}的简历 - Powered by {{ totalInfor.webName }}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keyword" content="{{ pageInformation.webKeyword }}"/>
+	<meta name="description" content="{{ pageInformation.webDescription }}"/>
+	<link rel="icon" type="image/png" href="{% static 'currency/webFile/favicon.png' %}">
+	<!--[if lte IE 8]><script src="/static/resume/re_04/css/ie/html5shiv.js"></script><![endif]-->
+	<script src="/static/resume/re_04/js/jquery.min.js"></script>
+	<script src="/static/resume/re_04/js/jquery.scrollzer.min.js"></script>
+	<script src="/static/resume/re_04/js/jquery.scrolly.min.js"></script>
+	<script src="/static/resume/re_04/js/skel.min.js"></script>
+	<script src="/static/resume/re_04/js/skel-layers.min.js"></script>
+	<script src="/static/resume/re_04/js/init.js"></script>
+	<noscript>
+		<link rel="stylesheet" href="/static/resume/re_04/css/skel.css"/>
+		<link rel="stylesheet" href="/static/resume/re_04/css/style.css"/>
+		<link rel="stylesheet" href="/static/resume/re_04/css/style-xlarge.css"/>
+	</noscript>
+	<!--[if lte IE 8]><link rel="stylesheet" href="/static/resume/re_04/css/ie/v8.css" /><![endif]-->
+</head>
+<body>
+<div id="wrapper">
+
+	<!-- Header -->
+	<section id="header" class="skel-layers-fixed">
+		<header>
+			<span class="image avatar"><img src="{{ totalData.photo.0 }}" alt=""/></span>
+			<h1 id="logo"><a href="#">{{ totalData.zh_name.0 }}</a></h1>
+			<p>软件工程师</p>
+		</header>
+		<nav id="nav">
+			<ul>
+				<li><a href="#one" class="active">简介</a></li>
+				<li><a href="#two">教育经历</a></li>
+				<li><a href="#three">实习经验</a></li>
+				<li><a href="#four">项目经历</a></li>
+				<li><a href="#five">所获奖励</a></li>
+			</ul>
+		</nav>
+	</section>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- One -->
+		<section id="one">
+			<div class="container">
+				<header class="major">
+					<h2>简介</h2>
+				</header>
+				<p>{{ totalData.short_intro.0 }}</p>
+			</div>
+		</section>
+
+		<!-- Two -->
+		<section id="two">
+			<div class="container">
+				<h3>教育经历</h3>
+				<div style="margin-left: 10px">
+				<header>
+						<h4>{{ totalData.edu_mas_name.0 }}</h4>
+						<p>{{ totalData.edu_mas_major.0 }} - {{ totalData.edu_mas_time.0 }}</p>
+					</header>
+					<p>{{ totalData.edu_mas_con.0 }}</p>
+				<header>
+						<h4>{{ totalData.edu_uni_name.0 }}</h4>
+						<p>{{ totalData.edu_uni_major.0 }} - {{ totalData.edu_uni_time.0 }}</p>
+					</header>
+					<p>{{ totalData.edu_uni_con.0 }}</p>
+				<header>
+						<h4>{{ totalData.edu_exc_name.0 }}</h4>
+						<p>{{ totalData.edu_exc_major.0 }} - {{ totalData.edu_exc_time.0 }}</p>
+					</header>
+					<p>{{ totalData.edu_exc_con.0 }}</p>
+					</div>
+			</div>
+		</section>
+
+		<!-- Three -->
+		<section id="three">
+			<div class="container">
+				<h3>工作经历</h3>
+				<div style="margin-left: 10px">
+				<header>
+						<h4>{{ totalData.work_4_name.0 }}</h4>
+						<p>{{ totalData.work_4_pos.0 }} - {{ totalData.work_4_time.0 }}</p>
+					</header>
+					<p>{{ totalData.work_4_con.0 }}</p>
+				<header>
+						<h4>{{ totalData.work_3_name.0 }}</h4>
+						<p>{{ totalData.work_3_pos.0 }} - {{ totalData.work_3_time.0 }}</p>
+					</header>
+					<p>{{ totalData.work_3_con.0 }}</p>
+				<header>
+						<h4>{{ totalData.work_2_name.0 }}</h4>
+						<p>{{ totalData.work_2_pos.0 }} - {{ totalData.work_2_time.0 }}</p>
+					</header>
+					<p>{{ totalData.work_2_con.0 }}</p>
+					<header>
+						<h4>{{ totalData.work_1_name.0 }}</h4>
+						<p>{{ totalData.work_1_pos.0 }} - {{ totalData.work_1_time.0 }}</p>
+					</header>
+					<p>{{ totalData.work_1_con.0 }}</p>
+					</div>
+			</div>
+		</section>
+
+		<!-- Four -->
+		<section id="four">
+			<div class="container">
+				<h3>项目经历</h3>
+				<div style="margin-left: 10px">
+				<header>
+						<h4>Anycodes在线编程</h4>
+						<p>{{ totalData.anycodes_who.0 }} &nbsp;&nbsp; {{ totalData.anycodes_time.0 }}</p>
+					</header>
+					<p style="margin-left: 10px">{{ totalData.anycodes_intro.0 }}</p>
+					<p style="margin-left: 10px">{{ totalData.anycodes_tec.0 }}</p>
+					<p style="margin-left: 10px">{{ totalData.anycodes_more.0 }}</p>
+				<header>
+						<h4>ZJU智能博客系统</h4>
+						<p>{{ totalData.zju_who.0 }} &nbsp;&nbsp; {{ totalData.zju_time.0 }}</p>
+					</header>
+					<p style="margin-left: 10px">{{ totalData.zju_intro.0 }}</p>
+					<p style="margin-left: 10px">{{ totalData.zju_tec.0 }}</p>
+					<p style="margin-left: 10px">{{ totalData.zju_more.0 }}</p>
+					</div>
+
+				<div style="float: right"><p>更多项目信息<font color="#008b8b"><a href="/project">请点击这里</a></font></p></div>
+			</div>
+		</section>
+
+		<!-- Five -->
+
+		<section id="five">
+			<div class="container">
+				<h3>获得奖励</h3>
+				<div style="margin-left: 10px">
+					<p>{{ totalData.awards.0 }}<br>
+					{{ totalData.awards.1 }}<br>
+					{{ totalData.awards.2 }}<br>
+					{{ totalData.awards.3 }}<br>
+					{{ totalData.awards.4 }}<br>
+					{{ totalData.awards.5 }}<br>
+					{{ totalData.awards.6 }}<br>
+					{{ totalData.awards.7 }}<br>
+					{{ totalData.awards.8 }}<br>
+					{{ totalData.awards.9 }}<br>
+					{{ totalData.awards.10 }}<br>
+					{{ totalData.awards.11 }}<br>
+				</div>
+			</div>
+		</section>
+
+
+	</div>
+
+	<!-- Footer -->
+	<section id="footer">
+		<div class="container">
+			<ul class="copyright">
+				<p>Powered by {{ totalInfor.webName }}<br><br>
+				<a href="/blog">博客首页</a> | <a href="/album">我的相册</a> |
+                    <a href="/video">视频中心</a> | <a href="/project">项目中心</a></p>
+			</ul>
+		</div>
+	</section>
+
+</div>
+</body>
+</html>

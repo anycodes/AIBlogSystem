@@ -1,0 +1,94 @@
+{% extends 'admin/defaultAdmin/base/base_main.html' %}
+{% load staticfiles %}
+{% block headFile %}
+    {% if saveToDB.0 == "success" or saveToDB.0 == "danger" %}
+        <meta http-equiv="refresh" content="2;URL={{ handleUrl }}">
+    {% endif %}
+{% endblock %}
+{% block sidebar %}
+    {% include 'admin/defaultAdmin/base/base_sidebar.html' %}
+{% endblock %}
+{% block navbar %}
+    {% include 'admin/defaultAdmin/base/base_navbar.html' %}
+{% endblock %}
+{% block content %}
+
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="content">
+                             <div class="row" style="height: 150px">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="alert alert-{{ saveToDB.0 }}">
+                                            <center><span><h4>{{ saveToDB.1 }}</h4></span></center>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="height: 200px">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include 'admin/defaultAdmin/base/base_foorer.html' %}
+{% endblock %}
+{% block footFile %}
+    <!--   Core JS Files   -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/jquery-1.10.2.js' %}" type="text/javascript"></script>
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap-checkbox-radio.js' %}"></script>
+    <!--  Charts Plugin -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/chartist.min.js' %}"></script>
+    <!--  Notifications Plugin    -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/bootstrap-notify.js' %}"></script>
+    <!--  Google Maps Plugin    -->
+    <!---<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>--->
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/paper-dashboard.js' %}"></script>
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="{% static 'admin/defaultAdmin/assets/js/demo.js' %}"></script>
+{% endblock %}

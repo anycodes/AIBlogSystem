@@ -1,0 +1,128 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>
+		{% if categoryData %}{{ categoryData.name }} - {% endif %}刘宇的相册 - {{ pageInformation.webName }} - Powered by Liu Yu!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="{{ pageInformation.webDescription }}"/>
+	<meta name="keywords" content="{{ pageInformation.webKeyword }}"/>
+	<meta name="author" content="Liu Yu"/>
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="icon" type="image/png" href="{% static 'currency/webFile/favicon.png' %}">
+
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'album/defaultAblum/css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'album/defaultAblum/css/icomoon.css' %}">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{% static 'album/defaultAblum/css/magnific-popup.css' %}">
+	<!-- Salvattore -->
+	<link rel="stylesheet" href="{% static 'album/defaultAblum/css/salvattore.css' %}">
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="{% static 'album/defaultAblum/css/style.css' %}">
+	<!-- Modernizr JS -->
+	<script src="{% static 'album/defaultAblum/js/modernizr-2.6.2.min.js' %}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="{% static 'album/defaultAblum/js/respond.min.js' %}"></script>
+	<![endif]-->
+
+</head>
+<body>
+
+<div id="fh5co-offcanvass">
+	<ul>
+		{% for eveCategory in category %}
+			<a href="/album?aid={{ eveCategory.cid }}" style="width: 300px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{ eveCategory.name }}</a><br>
+		{% endfor %}
+	</ul>
+<BR><BR>
+        <nav id="menu">
+				<header class="major">
+					<CENTER>更多链接</CENTER>
+				</header>
+                <div class="box">
+                    <CENTER><a href="/index">网站首页</a> | <a href="/blog">博客首页</a> | <a href="/album">我的相册</a><br>
+                    <a href="/video">视频中心</a> | <a href="/project">项目中心</a> | <a href="/resume">我的简历</a></CENTER>
+                </div>
+			</nav>
+</div>
+<header id="fh5co-header" role="banner">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<a href="#" class="fh5co-menu-btn js-fh5co-menu-btn">Menu <i class="icon-menu"></i></a>
+				<h2>{% if categoryData %}{{ categoryData.name }} - {% endif %}刘宇的相册</h2>
+				<p>{{ categoryData.remark }}</p>
+			</div>
+		</div>
+	</div>
+</header>
+<!-- END .header -->
+
+<div id="fh5co-main">
+	<div class="container">
+
+		<div class="row">
+
+			<div id="fh5co-board" data-columns>
+				{% for evePhoto in pictureData %}
+					<div class="item">
+						<div class="animate-box">
+							<a href="/files/{% if not isloginData %}back{% endif %}{{ evePhoto.picture.file_add }}" class="image-popup fh5co-board-img"
+							   title="{{ evePhoto.name }}"><img src="/files/small{{ evePhoto.picture.file_add }}" alt="{{ evePhoto.name }}"></a>
+						</div>
+						<div class="fh5co-desc">{{ evePhoto.name }}</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	{% if not aid %}
+	<center>更多图片，请点击<a href="#" class="js-fh5co-menu-btn">这里查看</a></center>
+	{% endif %}
+</div>
+
+<footer id="fh5co-footer">
+
+	<div class="container">
+		<div class="row row-padded">
+			<div class="col-md-12 text-center">
+				<p>
+					<small>&copy; Powered By Liu Yu <br>&copy; WebSite Name: <a
+							href="/index">{{ pageInformation.webName }}</a>.
+					</small>
+				</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="{% static 'album/defaultAblum/js/jquery.min.js' %}"></script>
+<!-- jQuery Easing -->
+<script src="{% static 'album/defaultAblum/js/jquery.easing.1.3.js' %}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'album/defaultAblum/js/bootstrap.min.js' %}"></script>
+<!-- Waypoints -->
+<script src="{% static 'album/defaultAblum/js/jquery.waypoints.min.js' %}"></script>
+<!-- Magnific Popup -->
+<script src="{% static 'album/defaultAblum/js/jquery.magnific-popup.min.js' %}"></script>
+<!-- Salvattore -->
+<script src="{% static 'album/defaultAblum/js/salvattore.min.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'album/defaultAblum/js/main.js' %}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,1001 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<head>
+
+    <title>{{ totalData.zh_name.0 }}的简历 - Powered by {{ totalInfor.webName }}</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="keyword" content="{{ pageInformation.webKeyword }}"/>
+	<meta name="description" content="{{ pageInformation.webDescription }}"/>
+	<link rel="icon" type="image/png" href="{% static 'currency/webFile/favicon.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'resume/re_02/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'resume/re_02/css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'resume/re_02/css/animate.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'resume/re_02/css/jquery.mCustomScrollbar.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'resume/re_02/css/colors/DarkBlue.css' %}" id="colors-style"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'resume/re_02/css/switcher.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'resume/re_02/css/main.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'resume/re_02/css/prettyPhoto.css' %}"/>
+    <!--[if IE 7]>
+                <link rel="stylesheet" type="text/css" href="{% static 'resume/re_02/css/icons/font-awesome-ie7.min.css' %}"/>
+    <![endif]-->
+    <style>
+        @media only screen and (max-width: 991px) {
+            .resp-vtabs .resp-tabs-container {
+                margin-left: 13px;
+            }
+        }
+
+        @media only screen and (min-width: 800px) and (max-width: 991px) {
+            .resp-vtabs .resp-tabs-container {
+                margin-left: 13px;
+                width: 89%;
+            }
+
+            pre {
+                max-width: 100%;
+            }
+        }
+        p{
+            word-break:break-all;
+        }
+    </style>
+</head>
+
+<body>
+
+<!--[if lt IE 7]>
+    <p class="browsehappy">请升级您的浏览器！</p>
+<![endif]-->
+
+<!-- Laoding page -->
+<div id="preloader">
+    <div id="spinner"></div>
+</div>
+
+<!-- .slideshow -->
+<ul class="cb-slideshow" id="cb_slideshow" style="display:none">
+    <li><span></span>
+        <div></div>
+    </li>
+    <li><span></span>
+        <div></div>
+    </li>
+    <li><span></span>
+        <div></div>
+    </li>
+    <li><span></span>
+        <div></div>
+    </li>
+    <li><span></span>
+        <div></div>
+    </li>
+    <li><span></span>
+        <div></div>
+    </li>
+</ul>
+<!-- /.slideshow -->
+
+<!-- .wrapper -->
+<div class="wrapper">
+
+    <!--- .Content -->
+    <section class="tab-content">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="row">
+
+                        <div class="col-md-3 widget-profil">
+                            <div class="row">
+
+                                <!-- Profile Image -->
+                                <div class="col-lg-12 col-md-12 col-sm-3 col-xs-12 ">
+
+
+                                    <div class="image-holder one" id="pic_prof_1" style="display:block">
+
+                                        <img class="head-image up circle" src="{% static 'resume/re_02/images/pic.png' %}"
+                                             width="150"
+                                             height="150" alt=""/>
+                                        <img class="head-image up-left circle" src="{% static 'resume/re_02/images/pic.png' %}"
+                                             width="150"
+                                             height="150" alt=""/>
+                                        <img class="head-image left circle" src="{% static 'resume/re_02/images/pic.png' %}"
+                                             width="150"
+                                             height="150" alt=""/>
+                                        <img class="head-image down-left circle" src="{% static 'resume/re_02/images/pic.png' %}"
+                                             width="150" height="150" alt=""/>
+                                        <img class="head-image down circle" src="{% static 'resume/re_02/images/pic.png' %}"
+                                             width="150"
+                                             height="150" alt=""/>
+                                        <img class="head-image down-right circle" src="{% static 'resume/re_02/images/pic.png' %}"
+                                             width="150" height="150" alt=""/>
+                                        <img class="head-image right circle" src="{% static 'resume/re_02/images/pic.png' %}"
+                                             width="150"
+                                             height="150" alt=""/>
+                                        <img class="head-image up-right circle" src="{% static 'resume/re_02/images/pic.png' %}"
+                                             width="150"
+                                             height="150" alt=""/>
+                                        <img class="head-image front circle" src="{% static 'resume/re_02/images/pic.png' %}"
+                                             width="150"
+                                             height="150" alt=""/>
+
+                                    </div>
+
+                                    <!-- style for simple image profile -->
+                                    <div class="circle-img" id="pic_prof_2" style="display:none"></div>
+
+
+                                </div>
+                                <!-- End Profile Image -->
+
+                                <div class="col-lg-12 col-md-12 col-sm-9 col-xs-12">
+
+
+                                    <!-- Profile info -->
+                                    <div id="profile_info">
+                                        <h1 id="name" class="transition-02">刘 宇</h1>
+                                        <h4 class="line">计算机工程师 &amp; 创业者</h4>
+                                        <h6><span class="fa fa-map-marker"></span> 浙江大学 , 中国</h6>
+
+                                    </div>
+                                    <!-- End Profile info -->
+
+
+                                    <!-- Profile Description -->
+                                    <div id="profile_desc">
+                                        <p>
+                                            在最值得做梦的年纪，如果不去做一场梦，可能会后悔一辈子。我选择了自己的梦想，也选择了为梦想而去挑战，我相信现在的困难，都是未来美好的回忆！
+                                        </p>
+
+                                    </div>
+                                    <!-- End Profile Description -->
+
+
+                                    <!-- Name -->
+                                    <div id="">
+										{% if mobile == 1 %}
+										<center><br><br>
+
+					<a href="/blog"><font color="white">博客首页</font></a> | <a href="/album"><font color="white">我的相册</font></a> |
+                    <a href="/project"><font color="white">项目中心</font></a></center>
+
+										{% endif %}
+                                    </div>
+                                    <!-- End Name -->
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-9 flexy_content" style="padding-left: 0;padding-right: 0;">
+
+                            <!-- verticalTab menu -->
+                            <div id="verticalTab">
+
+                                <ul class="resp-tabs-list">
+                                    <li class="tabs-profile hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5a profile"
+                                        data-tab-name="profile">
+                                        <span class="tite-list"></span>
+                                        <i class="fa fa-user icon_menu icon_menu_active"></i>
+                                    </li>
+
+                                    <li class="tabs-resume hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5a"
+                                        data-tab-name="resume">
+                                        <span class="tite-list"></span>
+                                        <i class="fa fa-tasks icon_menu"></i>
+                                    </li>
+                                </ul>
+                                <!-- /resp-tabs-list -->
+
+
+                                <!-- resp-tabs-container -->
+                                <div class="resp-tabs-container">
+
+                                    <!-- profile -->
+                                    <div id="profile" class="content_2">
+                                        <!-- .title -->
+                                        <h1 class="h-bloc">关于我</h1>
+
+                                        <div class="row top-p">
+                                            <div class="col-md-6 profile-l">
+
+                                                <!--About me-->
+                                                <div class="title_content">
+                                                    <div class="text_content">不断挑战的，是梦想</div>
+                                                    <div class="clear"></div>
+                                                </div>
+
+                                                <ul class="about">
+
+                                                    <li>
+                                                        <i class="glyphicon glyphicon-user"></i>
+                                                        <label>姓名</label>
+                                                        <span class="value">刘 宇</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+
+                                                    <li>
+                                                        <i class="glyphicon glyphicon-calendar"></i>
+                                                        <label>生日</label>
+                                                        <span class="value">1993 07</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+
+                                                    <li>
+                                                        <i class="glyphicon glyphicon-map-marker"></i>
+                                                        <label>学校</label>
+                                                        <span class="value">浙江大学</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+
+                                                    <li>
+                                                        <i class="glyphicon glyphicon-envelope"></i>
+                                                        <label>邮箱</label>
+                                                        <span class="value">service@52exe.cn</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+
+
+                                                    <li>
+                                                        <i class="glyphicon glyphicon-globe"></i>
+                                                        <label>网址</label>
+                                                        <span class="value"><a href="http://www.0duzhan.com"
+                                                                               target="_blank">www.0duzhan.com</a></span>
+                                                        <div class="clear"></div>
+                                                    </li>
+
+                                                </ul>
+
+
+                                                <p style="margin-bottom:20px">
+                                                    <i class="fa fa-quote-left"></i>
+                                                    奔跑者，从来都不愿意停歇，因为他知道停下来了，就可能再也没有力气跑了。自2013年步入大学，我就告诉自己，绝对不能休息，不是为了自己，而是为了梦想，为了内心的那份执着。
+                                                </p>
+
+                                                <p style="margin-bottom:20px">
+                                                    <i class="fa fa-quote-left"></i>
+                                                    从本科毕业，来到浙大读研，我依旧没有停止自己的脚步，更广阔的天，我要更丰满的羽翼，更远的距离，我要更加坚实的双臂，展翅高飞不是所愿，振翅翱翔才是所终。
+                                                </p>
+
+                                            </div>
+                                            <!-- End left-wrap -->
+
+                                            <div class="col-md-6 profile-r">
+
+                                                <div class="cycle-slideshow">
+                                                    <img src="{% static 'resume/re_02/images/img-profile/about_1.jpg' %}" alt=""/>
+                                                    <img src="{% static 'resume/re_02/images/img-profile/about_2.png' %}" alt=""/>
+                                                    <img src="{% static 'resume/re_02/images/img-profile/about_3.png' %}" alt=""/>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="clear"></div>
+
+
+                                        <div class="row" id="services">
+                                            <div class="col-md-12">
+                                                <div class="title_content">
+                                                    <div class="text_content">过往经历</div>
+                                                    <div class="clear"></div>
+                                                </div>
+
+
+                                                <div class="col-md-4 pack-service">
+                                                    <div class="service">
+                                                        <div class="service-icon"><i class="fa fa-tag"></i></div>
+                                                        <div class="service-detail">
+                                                            <h6>学习历程</h6>
+                                                            <p>
+                                                                2013年-2017年，就读于延边大学化学工程与工艺专业，同时学习韩国语作为副专攻，2016年，作为交换生，在韩国江原大学学习计算机科学与技术，2017年，被保送至浙江大学软件学院读研。</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pack-service">
+                                                    <div class="service">
+                                                        <div class="service-icon"><i class="fa fa-cogs"></i></div>
+                                                        <div class="service-detail">
+                                                            <h6>社会拼搏</h6>
+                                                            <p>
+                                                                2013年12月，参与社会奉献活动，去山区支教一个月；2014年5月，创建吉林市群龙科技有限公司，运行微企平台，Anycodes平台以及校园一点通等平台；2017年7月，在宁波市数联科技担任爬虫实习生。</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pack-service">
+                                                    <div class="service">
+                                                        <div class="service-icon"><i class="fa fa-arrows-alt"></i></div>
+                                                        <div class="service-detail">
+                                                            <h6>活动比赛</h6>
+                                                            <p>
+                                                                曾获数学竞赛国家级一等奖，创翼大赛国家级二等奖，创青春、互联网+等比赛国家级三等奖，其他各类比赛（包括数学建模，软件开发比赛，大数据分析比赛等）累计获得奖项超过50余次。</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- End Services -->
+                                        <div class="copyrights">Powered By Liu Yu</a>
+                                        </div>
+
+                                        <div class="clear"></div>
+                                        <div class="border-list"></div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="bottom-p">
+                                                    <div class="title_content">
+                                                        <div class="text_content">心路故事</div>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <div class="panel-group" id="accordion">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" data-parent="#accordion"
+                                                                       href="#collapseOne" class="collapse_tabs">
+                                                                        做一个对社会有用的人
+                                                                        <i class="glyphicon glyphicon-chevron-up"
+                                                                           style="float: right;font-size: 13px;"></i>
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                                <div class="panel-body">
+                                                                    <i class="fa fa-quote-left"></i>
+                                                                    大学期间，我的教授对我的影响特别大，通过他，我深刻意识到了一个人的社会责任以及一个人对社会的作用，甚至是在社会中的意义。所以，我无时无刻不告诉自己，要做一个对社会有用的人，我不断的努力学习，不为了挣钱而去创业，不为了出名而去资助学生，更不为了得到某些未知的好处去帮助学弟学妹，我不断的完善自己，我相信，只有自己不拖累社会，才能发挥自己的力量，去帮助更多人，去更好地奉献自己。2013年冬季，我参与了贫困山区支教，努力了一个月，离开的时候，看到那些孩子们都哭成了泪人，我的内心非常不好受。很多时候，我们觉得很平常的一件事，或者一个动作，可能在弱者心中，会产生惊涛骇浪。做一个有用的人，不是为了让自己变得多完美，而是为了活着更有意义，更有价值。
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" data-parent="#accordion"
+                                                                       href="#collapseTwo" class="collapse_tabs">
+                                                                        咬定青山不放松
+                                                                        <i class="glyphicon glyphicon-chevron-down"
+                                                                           style="float: right;font-size: 13px;"></i>
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                                <div class="panel-body">
+                                                                    <i class="fa fa-quote-left"></i>
+                                                                    有的时候，人需要学会放弃，但是这并不是我们做任何一件事都可以放弃的理由，很多时候，当我们确定了正确性，自己目标的明确性以及可行性之后，我们可能需要的就是那一股子的冲劲，我更喜欢把这股劲叫做咬定青山不放松的劲。记得第一次参加数学建模的我来说，完全不懂什么模型，更不清楚什么论文，但是我真的熬了三天，查看了无数的资料，自学了Matlab，虽然成绩平平，但是却让我收获颇丰，以致后面多次参加建模并获得了国家级，省级，校级奖项若干，掌握了Maltab的基础使用技巧，完成了本科阶段的论文（Matlab编程与化工结合相关的论文）。很多时候，我们咬定青山不放松，逼着自己做一些事情，坚持自己的一个目标，好像有那么一点点残忍，但是真的不一定什么时候，可能就会给我们意想不到的惊喜。第一次参加建模的时候的困苦和迷茫，记忆犹新，当时确实没想到，自己会从此爱上建模，爱上分析，后来逐渐的喜欢上了计算模型，开始了大数据，机器学习，深度学习的路子。咬定青山不放松，是一种精神，是一种我们坚持目标，坚定理想的精神。这种精神，让我爱上了建模，让我开始学习接触了计算机，让我参加了各种比赛并获奖，让我获得保研资格，交换资格……同时也是这种精神，在不断地鼓舞我坚持创业，不断为人民服务，帮助更多人。
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" data-parent="#accordion"
+                                                                       href="#collapseThree" class="collapse_tabs">
+                                                                        要有一种敢于想象的精神
+                                                                        <i class="glyphicon glyphicon-chevron-down"
+                                                                           style="float: right;font-size: 13px;"></i>
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="collapseThree" class="panel-collapse collapse">
+                                                                <div class="panel-body">
+                                                                    <i class="fa fa-quote-left"></i>
+                                                                    从一个普通本科，到浙大读研，从一个没有比赛经验的傻小子，到获得数十奖项的“校园人物”，我从不活在自己的过去，我只活在现实。我相信对过去的感慨和回忆，不如此时对未来做一个幻想。其实，很多时候，我们真的需要一颗敢于想象的心。在保送之前，我没想到，一个普通本科跨专业保研能成功，在创业之前我没想过，一个跨行创业的大学生能拿到第一笔投资，在交换之前我也没想过我能顺顺利利在韩国活过一学期（因为我自认为我韩国语不好），但是，一切都在敢想的基础上开始了，一切都在敢想之后，确定目标的合理性，确定性，可行性之后，开始付诸实践了。很多时候，我们做不到，并不是我们能力不够，而是我们没想到，有多少事情是如果我们想到了，也可以创造一片天地，但是，我更认为，不是我们没想到，而是，我们根本没敢去想。人生么，不做点白日梦，不傻傻的为这个白日梦拼搏一次，怎能对得起走这一遭？
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- End .profile -->
+
+                                    <!-- .resume -->
+                                    <div id="resume" class="content_2">
+                                        <!-- .title -->
+                                        <h1 class="h-bloc">个人简历</h1>
+
+                                        <div class="row">
+
+                                            <!-- .resume-right -->
+                                            <div class="col-md-6">
+
+                                                <!-- .title_content -->
+                                                <div class="title_content" style="float: none;">
+                                                    <div class="text_content">编程语言</div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <!-- /.title_content -->
+
+                                                <div class="skills">
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="95%">
+                                                        <div class="skillbar-title"><span>Python</span></div>
+                                                        <div class="skillbar-bar"style="width:95%;"></div>
+                                                        <div class="skill-bar-percent">95%</div>
+                                                    </div>
+
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="90%">
+                                                        <div class="skillbar-title"><span>Java</span></div>
+                                                        <div class="skillbar-bar" style="width:90%;"></div>
+                                                        <div class="skill-bar-percent">90%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="80%">
+                                                        <div class="skillbar-title"><span>Matlab</span></div>
+                                                        <div class="skillbar-bar" style="width:80%;"></div>
+                                                        <div class="skill-bar-percent">80%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="65%">
+                                                        <div class="skillbar-title"><span>HTML</span></div>
+                                                        <div class="skillbar-bar" style="width:65%;"></div>
+                                                        <div class="skill-bar-percent">65%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="35%">
+                                                        <div class="skillbar-title"><span>PHP</span></div>
+                                                        <div class="skillbar-bar" style="width:35%;"></div>
+                                                        <div class="skill-bar-percent">35%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+                                                </div>
+
+
+                                                <!-- .title_content -->
+                                                <div class="title_content" style="float: none;">
+                                                    <div class="text_content">研究领域</div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <!-- /.title_content -->
+
+                                                <div class="skills">
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="85%">
+                                                        <div class="skillbar-title"><span>Web开发</span></div>
+                                                        <div class="skillbar-bar"></div>
+                                                        <div class="skill-bar-percent">85%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="75%">
+                                                        <div class="skillbar-title"><span>分布式与网络爬虫</span></div>
+                                                        <div class="skillbar-bar" style="width:75%;"></div>
+                                                        <div class="skill-bar-percent">75%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="60%">
+                                                        <div class="skillbar-title"><span>服务器运维</span></div>
+                                                        <div class="skillbar-bar" style="width:60%;"></div>
+                                                        <div class="skill-bar-percent">60%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="89%">
+                                                        <div class="skillbar-title"><span>机器学习&深度学习</span></div>
+                                                        <div class="skillbar-bar" style="width:89%;"></div>
+                                                        <div class="skill-bar-percent">89%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="56%">
+                                                        <div class="skillbar-title"><span>数据挖掘&数据可视化</span></div>
+                                                        <div class="skillbar-bar" style="width:56%;"></div>
+                                                        <div class="skill-bar-percent">56%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+                                                </div>
+
+
+                                                <!-- .title_content -->
+                                                <div class="title_content" style="float: none;">
+                                                    <div class="text_content">掌握软件</div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <!-- /.title_content -->
+
+                                                <div class="skills">
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="95%">
+                                                        <div class="skillbar-title"><span>Pycharm，Eclips等IDE</span>
+                                                        </div>
+                                                        <div class="skillbar-bar" style="width:95%;"></div>
+                                                        <div class="skill-bar-percent">95%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix " data-percent="90%">
+                                                        <div class="skillbar-title"><span>Office办公组合</span></div>
+                                                        <div class="skillbar-bar" style="width:90%;"></div>
+                                                        <div class="skill-bar-percent">90%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix " data-percent="80%">
+                                                        <div class="skillbar-title">
+                                                            <span>Mysql、MongoDB，Redis等数据库软件</span></div>
+                                                        <div class="skillbar-bar" style="width:80%;"></div>
+                                                        <div class="skill-bar-percent">80%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix " data-percent="40%">
+                                                        <div class="skillbar-title"><span>Photoshop等设计软件</span></div>
+                                                        <div class="skillbar-bar" style="width:40%;"></div>
+                                                        <div class="skill-bar-percent">40%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix " data-percent="45%">
+                                                        <div class="skillbar-title"><span>Pr、会声会影等视频制作软件</span></div>
+                                                        <div class="skillbar-bar" style="width:45%;"></div>
+                                                        <div class="skill-bar-percent">45%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+                                                </div>
+
+
+                                                <!-- .title_content -->
+                                                <div class="title_content" style="float: none;">
+                                                    <div class="text_content">个人爱好</div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <!-- /.title_content -->
+
+                                                <div class="skills">
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="60%">
+                                                        <div class="skillbar-title"><span>听音乐</span></div>
+                                                        <div class="skillbar-bar" style="width:60%;"></div>
+                                                        <div class="skill-bar-percent">60%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix " data-percent="95%">
+                                                        <div class="skillbar-title"><span>旅行</span></div>
+                                                        <div class="skillbar-bar" style="width:95%;"></div>
+                                                        <div class="skill-bar-percent">95%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix " data-percent="85%">
+                                                        <div class="skillbar-title"><span>阅读</span></div>
+                                                        <div class="skillbar-bar" style="width:85%;"></div>
+                                                        <div class="skill-bar-percent">85%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix " data-percent="70%">
+                                                        <div class="skillbar-title"><span>写代码</span></div>
+                                                        <div class="skillbar-bar" style="width:70%;"></div>
+                                                        <div class="skill-bar-percent">70%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+                                                </div>
+
+
+                                                <!-- .title_content -->
+                                                <div class="title_content" style="float: none;">
+                                                    <div class="text_content">语言技能</div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <!-- /.title_content -->
+
+                                                <div class="skills">
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix" data-percent="90%">
+                                                        <div class="skillbar-title"><span>汉语</span></div>
+                                                        <div class="skillbar-bar" style="width:90%;"></div>
+                                                        <div class="skill-bar-percent">99%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix " data-percent="60%">
+                                                        <div class="skillbar-title"><span>英语</span></div>
+                                                        <div class="skillbar-bar" style="width:60%;"></div>
+                                                        <div class="skill-bar-percent">60%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+
+                                                    <!-- .skillbar -->
+                                                    <div class="skillbar clearfix " data-percent="50%">
+                                                        <div class="skillbar-title"><span>韩语</span></div>
+                                                        <div class="skillbar-bar" style="width:50%;"></div>
+                                                        <div class="skill-bar-percent">50%</div>
+                                                    </div>
+                                                    <!-- /.skillbar -->
+                                                </div>
+
+
+                                                <!-- .title_content -->
+                                                <div class="title_content" style="float: none;">
+                                                    <div class="text_content">我的简历</div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <!-- /.title_content -->
+
+                                                <!-- .download_resume -->
+                                                <a class="download" style="margin:0;float: left;"
+                                                   href="{{ totalData.file.0 }}">
+                                                    <span data-hover="下载我的简历"><i
+                                                            class="glyphicon glyphicon-download-alt"></i> 下载我的简历</span>
+                                                </a>
+                                                <!-- /.download_resume -->
+
+                                                <div class="title_content">
+                                                    <div class="text_content">教育经历</div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <!-- /.title_content -->
+
+                                                <!-- .attributes -->
+                                                <ul class="attributes">
+                                                    <li class="first">
+                                                        <h5>中国 浙江大学 <span class="duration"><i
+                                                                class="fa fa-calendar color"></i> 2017 - 至今</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-book"></span> 软件工程 - 研究生</h6>
+                                                        <p>
+                                                            2017年，被保送至浙江大学软件学院研究生院，主攻大数据方向。业余期间自学机器学习和深度学习，数据可视化等技术。
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <h5>韩国 江原大学 <span class="duration"><i
+                                                                class="fa fa-calendar color"></i> 2016 - 2016</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-book"></span> 计算机科学与技术 - 交换生</h6>
+                                                        <p>
+                                                            2016年春季学期，获得韩国江原大学交换资格（免学费，住宿费，伙食费等），在韩国江原大学，曾修Java，SQL以及计算机编程基础等课程。
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <h5>中国 延边大学 <span class="duration"><i
+                                                                class="fa fa-calendar color"></i> 2013 - 2017</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-book"></span> 化学工程与工艺（副专业：韩国语） - 本科生</h6>
+                                                        <p>
+                                                            在校期间，担任过团总支支部书记，干事等职务，也担任过大学生创新实践基地会长等职务，参与众多比赛，获得优异成绩，主修课程化工专业，辅修课程韩国语专业，并均获得了毕业证书，同时旁听了计算机专业课，例如Web概论，C语言等。</p>
+                                                    </li>
+                                                </ul>
+
+
+                                            </div>
+                                            <!-- /.resume-right -->
+
+
+                                            <!-- .resume-left -->
+                                            <div class="col-md-6 resume-left">
+                                                <!-- .title_content -->
+                                                <div class="title_content" style="margin-bottom:5px">
+                                                    <div class="text_content">工作经历</div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <!-- /.title_content -->
+
+                                                <!-- .attributes -->
+                                                <ul class="attributes">
+													<li class="first">
+                                                        <h5>{{ totalData.work_4_pos.0 }}<span class="duration"><i
+                                                                class="fa fa-calendar color"></i>{{ totalData.work_4_time.0 }}</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-briefcase"></span>{{ totalData.work_4_name.0 }}</h6>
+														<p>{{ totalData.work_4_con.0 }}</p>
+                                                            </li>
+                                                    <li class="first">
+                                                        <h5>{{ totalData.work_3_pos.0 }}<span class="duration"><i
+                                                                class="fa fa-calendar color"></i>{{ totalData.work_3_time.0 }}</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-briefcase"></span>{{ totalData.work_3_name.0 }}</h6>
+														<p>{{ totalData.work_3_con.0 }}</p>
+                                                            </li>
+													 <li class="first">
+                                                        <h5>{{ totalData.work_2_pos.0 }}<span class="duration"><i
+                                                                class="fa fa-calendar color"></i>{{ totalData.work_2_time.0 }}</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-briefcase"></span>{{ totalData.work_2_name.0 }}</h6>
+														<p>{{ totalData.work_2_con.0 }}</p>
+                                                            </li>
+                                                    <li class="first">
+                                                        <h5>{{ totalData.work_1_pos.0 }}<span class="duration"><i
+                                                                class="fa fa-calendar color"></i>{{ totalData.work_1_time.0 }}</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-briefcase"></span>{{ totalData.work_1_name.0 }}</h6>
+														<p>{{ totalData.work_1_con.0 }}</p>
+                                                            </li>
+
+                                                </ul>
+                                                <!-- /.attributes -->
+                                                <br>
+
+                                                <!-- .title_content -->
+                                                <div class="title_content">
+                                                    <div class="text_content">项目经验</div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <!-- /.title_content -->
+
+                                                <!-- .attributes -->
+                                                <ul class="attributes">
+                                                    <li class="first">
+                                                        <h5>Anycodes在线编程 <span class="duration"><i
+                                                                class="fa fa-calendar color"></i> 2015 - 至今</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-trophy"></span> 主要负责核心技术和服务器运维</h6>
+                                                        <p>
+                                                            该项目目前拥有注册用户10万，APP每天活跃人数1000+人，项目集合在线IDE，云端资源，基础教程以及论坛，在线答题，手机APP等于一身。曾获互联网+大赛与创青春比赛国家级铜奖，创新创业大赛吉林赛区20强等。</p>
+                                                    </li>
+                                                    <li>
+                                                        <h5>编程词典 <span class="duration"><i
+                                                                class="fa fa-calendar color"></i> 2016 - 至今</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-trophy"></span> 核心技术实现</h6>
+                                                        <p>
+                                                            该软件主要是一款通过输入编程语言的关键词，给用户回复该关键词的用法，这个关键词包括了编程语言的函数名，包名等信息。目前该软件集成在Anycodes在线编程客户端中。</p>
+                                                    </li>
+
+                                                    <li>
+                                                        <h5>校园一点通（科大在线） <span class="duration"><i
+                                                                class="fa fa-calendar color"></i> 2013 - 2017</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-trophy"></span> 独立开发</h6>
+                                                        <p>
+                                                            该软件是微信公众平台软件，通过该软件，校园一点通微信平台（延边大学科技学院校园信息平台）拥有了查询成绩，课表功能，拥有课程分析，订车，订花，订蛋糕，订餐等功能，同时拥有抢课功能，任务发布等功能。</p>
+                                                    </li>
+
+                                                    <li>
+                                                        <h5>IWrite博客系统 <span class="duration"><i
+                                                                class="fa fa-calendar color"></i> 2016 - 2017</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-trophy"></span> 核心技术实现</h6>
+                                                        <p>该系统，主要是是通过Python
+                                                            Web进行开发，实现了一个博客的基础功能，例如发表文章，自定义菜单功能，友情链接，标签，分类，归档功能，评论与回复等功能。</p>
+                                                    </li>
+
+                                                    <li>
+                                                        <h5>自动邮件系统 <span class="duration"><i
+                                                                class="fa fa-calendar color"></i> 2017 - 2017</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-trophy"></span> 独立开发</h6>
+                                                        <p>
+                                                            该系统主要为某小型企业开发，实现了管理员上传工资Excel表格，以及预先录入员工信息，系统会自动提取员工信息并且给Excel表用户发送相关工资信息。该系统使用Django开发。</p>
+                                                    </li>
+
+
+                                                    <li>
+                                                        <h5>绍兴体育网 <span class="duration"><i
+                                                                class="fa fa-calendar color"></i> 2017 - 2017</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-trophy"></span> 后端开发</h6>
+                                                        <p>该项目是一个地区体育网，主要拥有新闻发布，赛事发布，活动参加等功能，本人独立负责项目后端代码。 </p>
+                                                    </li>
+
+                                                    <li>
+                                                        <h5>智慧政务绩效云平台 <span class="duration"><i
+                                                                class="fa fa-calendar color"></i> 2017 - 至今</span>
+                                                        </h5>
+                                                        <h6><span class="fa fa-trophy"></span> 数据采集、清洗、分析</h6>
+                                                        <p>
+                                                            该系统是一个区域政府机关的民众满意度评分系统，同时也是区域绩效系统。本人主要负责项目中全部客观数据的自动化抓取和清洗，并存入到数据库中，同时对目标区域进行舆情分析。</p>
+                                                    </li>
+
+                                                </ul>
+                                                <!-- /.attributes -->
+                                                <br>
+
+                                            </div>
+                                            <!-- /.resume-left -->
+                                        </div>
+
+                                        <div style="clear: both"></div>
+
+
+                                        <!-- client reference -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <div class="reference clearfix">
+
+                                                    <!-- .title_content -->
+                                                    <div class="title_content" style="margin-bottom:5px">
+                                                        <div class="text_content">曾获荣誉与奖项</div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                    <!-- /.title_content -->
+
+
+                                                    <ul>
+                                                        <li class="clearfix">
+                                                            <img src="{% static 'resume/re_02/images/zhuanli.png' %}"
+                                                                 class="img_reference"
+                                                                 width="100" height="100" alt="">
+                                                            <p>专利1项：带应用软件界面的显示器(Anycodes在线编程)<br>软件著作权8项：
+                                                                Anycodes在线编程平台、Anycodes编程词典软件、在线编程软件、Write博客系统、校园一点通软件、微信背单词软件、手机编程软件、易mails软件
+                                                            </p>
+
+                                                        </li>
+                                                        <li class="clearfix">
+                                                            <img src="{% static 'resume/re_02/images/chuangqingchun.png' %}"
+                                                                 class="img_reference"
+                                                                 width="100" height="100" alt="">
+                                                            <p>第一届创青春全国大学生创业大赛 延边大学优秀奖<br>第二届创青春全国大学生创业大赛
+                                                                国家级铜奖，吉林省省级金奖，湖南省省级金奖<br>第三届创青春青年创业大赛，吉林赛区银奖，代表吉林地区参与国赛
+                                                            </p>
+                                                        </li>
+                                                        <li class="clearfix">
+                                                            <img src="{% static 'resume/re_02/images/hulianwang.png' %}"
+                                                                 class="img_reference"
+                                                                 width="100" height="100" alt="">
+                                                            <p>首届互联网+全国大学生创新创业大赛 吉林省铜奖<br>第二届互联网+全国大学生创新创业大赛 国家级铜奖<br>第二届互联网+全国大学生创新创业大赛
+                                                                吉林省金奖</p>
+                                                        </li>
+                                                        <li class="clearfix">
+                                                            <img src="{% static 'resume/re_02/images/shuxuejianmo.png' %}"
+                                                                 class="img_reference"
+                                                                 width="100" height="100" alt="">
+                                                            <p>2014年吉林省大学生数学建模竞赛二等奖，延边大学数学建模竞赛三等奖<br>
+                                                                2015年国家级数学建模竞赛赛区二等奖，吉林省大学生数学建模竞赛一等奖<br>
+                                                                2016年吉林省大学生数学建模竞赛二等奖，延边大学数学建模竞赛一等奖</p>
+                                                        </li>
+                                                        <li class="clearfix">
+                                                            <img src="{% static 'resume/re_02/images/shuxue.png' %}"
+                                                                 class="img_reference"
+                                                                 width="100" height="100" alt="">
+                                                            <p>2015年全国大学生学竞赛 国家级一等奖<br>
+                                                                第七届吉林省大学生数学竞赛 吉林省一等奖</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
+                                            <div style="clear: both"></div>
+                                        </div>
+
+                                    </div>
+                                    <!-- End .resume -->
+
+
+                                </div>
+                                <!-- End #resp-tabs-container -->
+
+                            </div><!-- End verticalTab -->
+
+                        </div><!-- End flexy_content -->
+
+
+                    </div><!-- End row -->
+
+                </div><!-- End col-md-12 -->
+
+            </div><!-- End row -->
+
+        </div><!-- End container -->
+
+    </section>
+
+{% if mobile == 2 %}
+										<center><br><br>
+
+					<a href="/blog"><font color="white">博客首页</font></a> | <a href="/album"><font color="white">我的相册</font></a> |
+                    <a href="/project"><font color="white">项目中心</font></a></center>
+
+										{% endif %}
+    <!-- End Content -->
+
+</div>
+<!-- End wrapper -->
+
+<!-- Switcher -->
+<div id="custumize-style">
+    <h2>风格定制<a href="#" class="switcher"><i class="fa fa-cogs icon-switcher"></i></a></h2>
+    <div>
+
+
+        <h3 class="layouts">动画效果</h3>
+        <div id="show">
+
+            <select name="one" class="dropdown-select">
+                <optgroup label="出现形式">
+                    <option value="bounceIn" selected>出现</option>
+                    <option value="bounceInDown">从上到下</option>
+                    <option value="bounceInLeft">从左到右</option>
+                    <option value="bounceInRight">从右到左</option>
+                    <option value="bounceInUp">从下到上</option>
+                </optgroup>
+
+                <optgroup label="退出形式">
+                    <option value="fadeIn">消失</option>
+                    <option value="fadeInDown">从上到下</option>
+                    <option value="fadeInLeft">从左到右</option>
+                    <option value="fadeInRight">从右到左</option>
+                    <option value="fadeInUp">从下到上</option>
+                </optgroup>
+            </select>
+
+        </div>
+
+        <h3 class="layouts" style="padding-top:5px">背景风格</h3>
+        <div id="show">
+
+            <div class="clean-check">
+
+                <input type="radio" id="s1" name="layout" value="bg_color" checked="checked"/>
+                <label for="s1"><span></span>纯色</label>
+
+                <input type="radio" id="s2" name="layout" value="bg_slider"/>
+                <label for="s2"><span></span>图片</label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div>
+        <h3>背景颜色</h3>
+        <ul class="colors-style bgsolid" id="bgsolid">
+            <li><a href="#" class="gray-bg"></a></li>
+            <li><a href="#" class="green-bg"></a></li>
+            <li><a href="#" class="blue-bg"></a></li>
+            <li><a href="#" class="red-bg"></a></li>
+            <li><a href="#" class="yellow-bg"></a></li>
+        </ul>
+    </div>
+
+    <div>
+        <h3>背景图片</h3>
+        <ul class="colors-style bg" id="bg">
+            <li><a href="#" class="bg1"></a></li>
+            <li><a href="#" class="bg2"></a></li>
+            <li><a href="#" class="bg3"></a></li>
+            <li><a href="#" class="bg4"></a></li>
+            <li><a href="#" class="bg5"></a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="{% static 'resume/re_02/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'resume/re_02/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'resume/re_02/js/jquery.cycle2.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'resume/re_02/js/jquery.mixitup.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'resume/re_02/js/HeadImage.js' %}"></script>
+<script type="text/javascript" src="{% static 'resume/re_02/js/easyResponsiveTabs.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'resume/re_02/js/jsSwitcher/jquery.cookie.js' %}"></script>
+<script type="text/javascript" src="{% static 'resume/re_02/js/jsSwitcher/switcher.js' %}"></script>
+<script type="text/javascript" src="{% static 'resume/re_02/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'resume/re_02/js/jquery.prettyPhoto.js' %}"></script>
+<script type="text/javascript" src="{% static 'resume/re_02/js/main.js' %}"></script>
+</body>
+</html>

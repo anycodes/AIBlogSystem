@@ -1,0 +1,243 @@
+
+body, html { overflow-x:hidden; }
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal; 
+    -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+    -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, span, p { font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+.blue { color: #6CF; }
+
+.green { color: #CF0; }
+
+h2 {
+	padding: 10px 0;
+}
+
+p {
+	padding: 10px 0;
+	text-align: justify;
+}
+
+a {
+	color: white;
+}
+
+a:hover {
+	color: white;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+/* Preloader */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff; /* change if the mask should have another color then white */
+    z-index: 99; /* makes sure it stays on top */
+}
+
+#status {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 50%; /* centers the loading animation horizontally one the screen */
+    top: 50%; /* centers the loading animation vertically one the screen */
+    background-image: url(/static/currency/indexPage/status.gif); /* path to your loading animation */
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: -100px 0 0 -100px; /* is width and height divided by two */
+}
+
+/*general*/
+#main-wrapper {
+     overflow: hidden;
+}
+
+.templatemo-logo {
+	z-index: 1;
+}
+.templatemo-site-title { 
+    color: #fff !important; 
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 1);
+}
+
+.templatemo-site-title a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.templatemo-site-title a:hover {
+	text-decoration: none;
+}
+
+
+img.slide {
+    width: 100%; 
+    z-index: -9999999; 
+    position: absolute;
+}
+
+.active {
+    display: block;
+}
+
+.inactive {
+    /* left: 703px; */
+    display: none;
+}
+
+.image-section {
+    position: fixed;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image-container img {
+    position: absolute;
+}
+
+.templatemo-content {
+    position: static;
+    overflow: hidden; 
+    margin-top: 20%;
+    padding-bottom: 6%;
+}
+
+.black-bg {
+    background-color: rgba(0,0,0,0.8);
+}
+.black-bg:before, .black-bg:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+.black-bg:after {
+    clear: both;
+}
+    .copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
+.templatemo-content section {
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: relative; 
+    overflow: hidden;
+    top: 0; 
+    padding-bottom: 20px;
+}
+
+
+.templatemo-content-wrapper {
+    overflow:hidden;
+}
+
+.templatemo-content h2 {
+    color:#fff;
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    
+}
+
+.templatemo-content p {
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 16px;
+}
+
+#map-canvas {
+	height: 260px;
+}
+
+
+.footer {
+    overflow:hidden; 
+    position:fixed; 
+    bottom: 10px;
+}
+
+.footer-text {
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    color:#fff; 
+    text-shadow: 0px 2px 3px rgba(0, 0, 0, 1);
+    margin-left: 30px;
+    font-size: 14px;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.btn-menu {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.btn-menu > .fa {
+    font-size: 50px;
+    margin: 20px 0;
+}
+.btn-menu > h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.change-section {
+    color: #fff;
+    text-decoration: none;
+}
+
+.change-section .black-bg {
+    transition: all 0.4s ease;
+}
+
+.change-section .black-bg > h2 {
+    transition: all 0.4s ease;
+}
+
+.change-section:hover {
+    text-decoration: none;
+    color: #246BB2;
+}
+
+.change-section:hover .black-bg {
+    background-color: rgba(255,255,255,0.8);
+}
+
+.change-section:hover .black-bg > h2 {
+    color: #246BB2;
+}
+
+@media (max-width: 991px) {
+    .footer {
+        overflow:hidden; 
+        position:static;
+        text-align: center;
+    }
+    
+    .footer-text {
+        margin-left: 0;  
+    }
+}

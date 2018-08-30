@@ -1,0 +1,98 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>注册 - {{ webtitle }} - Powered by Liu Yu！</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="{% static 'currency/loginAndRegister/assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'currency/loginAndRegister/assets/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'currency/loginAndRegister/assets/css/form-elements.css' %}">
+    <link rel="stylesheet" href="{% static 'currency/loginAndRegister/assets/css/style.css' %}">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <!-- Favicon and touch icons -->
+    <link rel="icon" type="image/png" href="{% static 'currency/webFile/favicon.png' %}">
+</head>
+<body>
+<!-- Top content -->
+<div class="top-content">
+
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7 text">
+                    <h1><strong>{{ webtitle }}</strong> 注册系统</h1>
+                    <div class="description">
+                        <p>
+                            注册之前，请您详细阅读本站的保密协议。<br>同时，希望您可以妥善保管自己的账号和密码。<br>如果您之前已经注册过本章账号，您可以前往登陆，感谢您对本站的支持！
+                        </p>
+                    </div>
+                    <div class="top-big-link">
+                        <a class="btn btn-link-1" href="/index">返回首页</a>
+                        <a class="btn btn-link-2" href="/login">前往登陆</a>
+                    </div>
+                </div>
+                <div class="col-sm-5 form-box">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>账号注册</h3>
+                            <p>请正确填写您的个人信息:</p>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="form-bottom">
+                        <form role="form" action="" method="post" class="registration-form">
+                            <div class="form-group">
+                                <label class="sr-only" for="form-first-name">用户名</label>
+                                <input type="text" name="name" placeholder="用户名..." class="form-first-name form-control" id="form-first-name">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-last-name">账号密码</label>
+                                <input type="password" name="password" placeholder="账号密码..." class="form-last-name form-control" id="form-last-name">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-last-name">电子邮箱</label>
+                                <input type="text" name="email" placeholder="电子邮箱..." class="form-last-name form-control" id="form-last-name">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-last-name">QQ号</label>
+                                <input type="text" name="qq" placeholder="QQ号..." class="form-last-name form-control" id="form-last-name">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-last-name">手机号</label>
+                                <input type="text" name="phone" placeholder="手机号..." class="form-last-name form-control" id="form-last-name">
+                            </div>
+                            {% if wrongMessage %}<p><font color="red">*{{ wrongMessage }}</font></p>{% endif %}
+                            <button type="resit" class="btn">信息重置</button>
+                            <button type="submit" class="btn">确定注册</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Javascript -->
+<script src="{% static 'currency/loginAndRegister/assets/js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'currency/loginAndRegister/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'currency/loginAndRegister/assets/js/jquery.backstretch.min.js' %}"></script>
+<script src="{% static 'currency/loginAndRegister/assets/js/retina-1.1.0.min.js' %}"></script>
+<script src="{% static 'currency/loginAndRegister/assets/js/scripts.js' %}"></script>
+
+<!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+</body>
+
+</html>

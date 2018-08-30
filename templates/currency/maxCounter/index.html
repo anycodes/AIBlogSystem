@@ -1,0 +1,57 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{% static 'currency/webFile/favicon.png' %}">
+    <title>{{ title }} - {{ webtitle }} - Powered by Liu Yu！</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="{{ keywords }}">
+    <meta name="author" content="Liu Yu">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="{% static 'currency/maxCounter/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'currency/maxCounter/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'currency/maxCounter/css/demo.css' %}"/>
+    <link rel="stylesheet" href="{% static 'currency/maxCounter/css/templatemo-style.css' %}">
+    <script type="text/javascript" src="{% static 'currency/maxCounter/js/modernizr.custom.86080.js' %}"></script>
+</head>
+<body>
+<div id="particles-js"></div>
+<div class="container-fluid">
+    {% if isFirstTime %}
+        <div class="row cb-slideshow-text-container ">
+            <div class="tm-content col-xl-6 col-sm-8 col-xs-8 ml-auto section">
+                <header class="mb-5"><h1>抱歉！</h1></header>
+                <P class="mb-5">
+                    由于您今日访问次数超出系统预设最大限制，被反爬虫系统记录并且屏蔽！如果您对我的博客有什么意见或者建议，可以在下面填写自己的邮箱，方便我们后续沟通交流，帮助我完善我的博客！</P>
+                <form action="" method="post" class="subscribe-form">
+                    <div class="row form-section">
+                        <div class="col-md-7 col-sm-7 col-xs-7">
+                            <input name="email" type="text" class="form-control" id="contact_email" placeholder="您的邮箱地址..." required/>
+                        </div>
+                        <div class="col-md-5 col-sm-5 col-xs-5">
+                            <button type="submit" class="tm-btn-subscribe">提交给我们</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <div class="row cb-slideshow-text-container ">
+            <div class="tm-content col-xl-6 col-sm-8 col-xs-8 ml-auto section">
+                <header class="mb-5"><h1>感谢支持！</h1></header>
+                <P class="mb-5">谢谢您，我已经收到了您的邮箱，我会尽快和您取得联系，听取您的意见或者建议，来完善我的博客！</P>
+            </div>
+        </div>
+    {% endif %}
+    <div class="footer-link">
+        <p>Powered by Liu Yu.</p>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="{% static 'currency/maxCounter/js/particles.js' %}"></script>
+<script type="text/javascript" src="{% static 'currency/maxCounter/js/app.js' %}"></script>
+</html>

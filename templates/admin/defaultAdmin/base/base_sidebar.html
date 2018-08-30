@@ -1,0 +1,19 @@
+<div class="sidebar" data-background-color="white" data-active-color="danger">
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="#" class="simple-text">
+                后台管理系统
+            </a>
+        </div>
+        <ul class="nav">
+            {% for key, value in navbar.items %}
+                <li class="{{ value.active }}">
+                    <a href="/admin/{{ key }}">
+                        <i class="{{ value.icon }}"></i>
+                        <p>{{ value.name }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
