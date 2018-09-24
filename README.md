@@ -1,3 +1,9 @@
+![静态代码检查首页](https://github.com/XRiver/DevOpsTeachingPlatform/blob/codeCheck/DevOpsStaticCheck/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-11%20%E4%B8%8B%E5%8D%881.35.27.png)
+
+作者：九乡河的小香瓜
+链接：https://www.jianshu.com/p/6122d5466604
+來源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
 这个主要是我的博客代码，我博客地址：http://www.0duzhan.com
 
 我的博客主要是通过Django进行开发，融合了一些有趣的小功能：
