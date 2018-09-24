@@ -30,18 +30,27 @@
 ## 功能展示
 
 * 首页展示
-![首页](https://github.com/anycodes/BlogSystem/blob/master/descPic/1.png?raw=true)
+![首页展示](https://github.com/anycodes/BlogSystem/blob/master/descPic/1.png?raw=true)
+* 博客首页
+![博客首页](https://github.com/anycodes/BlogSystem/blob/master/descPic/2.png?raw=true)
+* 博客内容页
+![博客内容页](https://github.com/anycodes/BlogSystem/blob/master/descPic/3.png?raw=true)
+* 简历页面
+![简历页面](https://github.com/anycodes/BlogSystem/blob/master/descPic/4.png?raw=true)
+* 相册页面
+![相册页面](https://github.com/anycodes/BlogSystem/blob/master/descPic/5.png?raw=true)
+* 视频中心
+![视频中心](https://github.com/anycodes/BlogSystem/blob/master/descPic/6.png?raw=true)
+* 项目中心
+![项目中心](https://github.com/anycodes/BlogSystem/blob/master/descPic/7.png?raw=true)
+* 用户后台首页
+![用户后台首页](https://github.com/anycodes/BlogSystem/blob/master/descPic/8.png?raw=true)
+* 用户后台API页面
+![用户后台API页面](https://github.com/anycodes/BlogSystem/blob/master/descPic/9.png?raw=true)
+* 管理员后台文章列表
+![管理员后台文章列表](https://github.com/anycodes/BlogSystem/blob/master/descPic/10.png?raw=true)
+* 管理员后台发布文章
+![管理员后台发布文章](https://github.com/anycodes/BlogSystem/blob/master/descPic/11.png?raw=true)
 
 
 
-
-
-
-
-
-
-使用方法：
-
-
-
-使用中有问题，或者想要帮忙改blog的bug，或者想要帮我提高博客性能，重构部分恶心代码的都可以联系我，service@52exe.cn
